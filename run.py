@@ -37,23 +37,22 @@ def run_game():
       the hangman
 
     """
+    # get the player name and validate name againts the rules
     while True:
         print("Please enter your name\n")
         print("Name should contain only letters and should not have any special characters")
         print("Example: Deric \n\n")
 
         player_name = input("Enter your name here:\n")
-        # validate the player name againts the rules
         if validate_name(player_name):
             print("Name is valid")
             break
         else:
             print(
                 """Hmmm....this doesn't seem right \U0001F914 """
-                """ Please make sure to enter a name!"""
+                """ Please make sure to enter a valid name!"""
             )
-
-
+    
 
 def main():
     """
