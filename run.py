@@ -64,18 +64,19 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        print("Please enter your name\n")
+        print("\nPlease enter your name\n")
         print("-"*80)
-        print("\nName should contain only letters and should not have any special characters")
-        print("Example:  Deric \n")
+        print("\n Name should contain only letters and should not have any special characters")
+        print(" Example:  Deric \n")
         print("-"*80)
 
         player_name = input("\n\nEnter your name here:  ")
         if validate_name(player_name):
             break
         else:
+            clear()
             print(
-                """Hmmm....this doesn't seem right \U0001F914 """
+                """ \n\n Hmmm....this doesn't seem right \U0001F914 """
                 """ Please make sure to enter a valid name!"""
             )
     # get randomly actual word from list of words
@@ -92,6 +93,7 @@ def run_game():
 
     # repeat the user guess until the number of life become 0 
     while (number_of_guess > 0):
+        #clear()
         # To display gussed letter in the original word like _ _ X _ _
         # display_guss_letter = ""
         # if user guessed letter present in actual word then add guessed 
@@ -103,13 +105,16 @@ def run_game():
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
             print(f"\n Congratz You Won : You gussed the word {actual_word}")
+            input()
             main()
 
         # Display the number of guess left and all guessed letters
         print("\n\n")
-        print(f"Number of guess left :     {number_of_guess}\n")
-        print(f"Gussed letter        :     {user_guessed_letters}")
-        print(f"Actual word          :     {display_guss_letter}")
+        print(10* " ", 50* '#',"\n")
+        print(20* " ", f"Number of guess left :     {number_of_guess}", 20* " ")
+        print(20* " ", f"Gussed letter        :     {user_guessed_letters}", 20* " ")
+        print(20* " ", f"Actual word          :     {display_guss_letter}", 20* " ","\n")
+        print(10* " ", 50* '#', 10*" ")
         print("\n\n")
         # Ask user to guess the letter
         user_guess_letter = input("Guess a letter here : ")
@@ -166,7 +171,7 @@ def main():
 
         if user_choice == 1:
             print("\n\n")
-            print("Congratzz!! You started your game \n")
+            print("Your game started .... \n")
             # start the game
             run_game()
             break
