@@ -1,6 +1,7 @@
 import random
 from string import ascii_letters
 from words import list_of_words
+from hangman import hangman_images
 
 
 def validate_name(name):
@@ -21,6 +22,10 @@ def validate_name(name):
         return False
     else:
         return True
+
+
+def draw_hangman(number_of_guess):
+    return hangman_images[number_of_guess]
 
 
 def run_game():
@@ -56,7 +61,7 @@ def run_game():
             )
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
-
+    print(actual_word)
     # define the number of guess and it is equal to the length of the actual word
     number_of_guess = len(actual_word)
     # store all the user gussed letters for validating user repeating the same letter
@@ -67,10 +72,10 @@ def run_game():
     # repeat the user guess until the number of life become 0 
     while (number_of_guess > 0):
         # To display gussed letter in the original word like _ _ X _ _
-        display_guss_letter = ""
+        # display_guss_letter = ""
         # if user guessed letter present in actual word then add guessed 
         # letter else add "_" to the display word
-        display_guss_letter = [letter if letter in user_guess_letter else "_" for letter in actual_word]
+        display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
         print(" ".join(display_guss_letter))
 
         # Display the number of guess left and all guessed letters
@@ -91,9 +96,13 @@ def run_game():
         # decrement the number of guess and draw hangman
         if user_guess_letter not in actual_word:
             number_of_guess -= 1
-            draw_hangman(number_of_guess)
+            print(draw_hangman(number_of_guess))
         else:
-            print("Your guess is correct !!!  {user_guess_letter} found ")
+            print("Your guess is correct !!!  {user_guess_letter} found \n")
+            # check the user guessed all letters in the actual word
+            if (user_guessed_letters == actual_word):
+                print(f"\n Congratz You Won : You gussed the word {actual_word} correct")
+
         
 
 
