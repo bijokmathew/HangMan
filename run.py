@@ -3,7 +3,21 @@ import os
 from string import ascii_letters
 from words import list_of_words
 from hangman import hangman_images
+import gspread 
+from google.oauth2.service_account import Credentials
 
+# Global variable declaration
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open("hangman-game-score")
+scores = SHEET.worksheet("higher-score")
 
 def clear():
     """
@@ -104,7 +118,7 @@ def run_game():
             print("\nPlease enter valid character \n")
             continue
 
-           # user_guess_letter = input("Guess a letter here : ")
+        # user_guess_letter = input("Guess a letter here : ")
         # if guessed letter not present in present in actual word then
         # decrement the number of guess and draw hangman
         if user_guess_letter not in actual_word:
@@ -113,13 +127,6 @@ def run_game():
         else:
             print(f"\n Your guess is correct !!!  {user_guess_letter} found \n")
             user_guessed_word += user_guess_letter
-
-
-        
-
-
-        
-    
 
 
 def main():
