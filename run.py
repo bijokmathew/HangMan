@@ -3,7 +3,7 @@ import os
 from string import ascii_letters
 from words import list_of_words
 from hangman import hangman_images
-import gspread 
+import gspread
 from google.oauth2.service_account import Credentials
 
 # Global variable declaration
@@ -65,10 +65,12 @@ def run_game():
     # get the player name and validate name againts the rules
     while True:
         print("Please enter your name\n")
-        print("Name should contain only letters and should not have any special characters")
-        print("Example: Deric \n\n")
+        print("-"*80)
+        print("\nName should contain only letters and should not have any special characters")
+        print("Example:  Deric \n")
+        print("-"*80)
 
-        player_name = input("Enter your name here:  ")
+        player_name = input("\n\nEnter your name here:  ")
         if validate_name(player_name):
             break
         else:
