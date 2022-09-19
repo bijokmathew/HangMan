@@ -1,7 +1,15 @@
 import random
+import os
 from string import ascii_letters
 from words import list_of_words
 from hangman import hangman_images
+
+
+def clear():
+    """
+    Clear the screen by using system call
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def validate_name(name):
@@ -14,10 +22,6 @@ def validate_name(name):
               False : name is invalid
 
     """
-    print(ascii_letters)
-    print(len(name))
-    if len(name) < 2:
-        print("correct")
     if len(name) < 2 or set(name).difference(ascii_letters):
         return False
     else:
@@ -50,9 +54,8 @@ def run_game():
         print("Name should contain only letters and should not have any special characters")
         print("Example: Deric \n\n")
 
-        player_name = input("Enter your name here:\n")
+        player_name = input("Enter your name here:  ")
         if validate_name(player_name):
-            print("Name is valid")
             break
         else:
             print(
@@ -68,6 +71,8 @@ def run_game():
     user_guessed_letters = ""
     # store user guess letter
     user_guess_letter = ""
+    # if guess is correct then add the letter to user_guessed_word
+    user_guessed_word=""
 
     # repeat the user guess until the number of life become 0 
     while (number_of_guess > 0):
@@ -76,32 +81,39 @@ def run_game():
         # if user guessed letter present in actual word then add guessed 
         # letter else add "_" to the display word
         display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
-        print(" ".join(display_guss_letter))
+        display_guss_letter = ''.join(display_guss_letter)
+        print(display_guss_letter)
+        print(actual_word)
+        # check the user guessed all letters in the actual word
+        if (display_guss_letter == actual_word):
+            print(f"\n Congratz You Won : You gussed the word {actual_word}")
+            main()
 
         # Display the number of guess left and all guessed letters
-        print(f"Number of guess left : {number_of_guess}\n")
-        print(f"Gussed letter: {user_guessed_letters}")
         print("\n\n")
-        print(f"Actual word:  {' '.join(display_guss_letter)}")
-
+        print(f"Number of guess left :     {number_of_guess}\n")
+        print(f"Gussed letter        :     {user_guessed_letters}")
+        print(f"Actual word          :     {display_guss_letter}")
+        print("\n\n")
         # Ask user to guess the letter
         user_guess_letter = input("Guess a letter here : ")
         # validate the user guessed letter
         if (user_guess_letter in ascii_letters):
             user_guessed_letters += user_guess_letter
         else:
-            print("Please enter valid character \n")
-            user_guess_letter = input("Guess a letter here : ")
+            print("\nPlease enter valid character \n")
+            continue
+
+           # user_guess_letter = input("Guess a letter here : ")
         # if guessed letter not present in present in actual word then
         # decrement the number of guess and draw hangman
         if user_guess_letter not in actual_word:
             number_of_guess -= 1
             print(draw_hangman(number_of_guess))
         else:
-            print("Your guess is correct !!!  {user_guess_letter} found \n")
-            # check the user guessed all letters in the actual word
-            if (user_guessed_letters == actual_word):
-                print(f"\n Congratz You Won : You gussed the word {actual_word} correct")
+            print(f"\n Your guess is correct !!!  {user_guess_letter} found \n")
+            user_guessed_word += user_guess_letter
+
 
         
 
@@ -117,6 +129,8 @@ def main():
      * Get the user choice and execute the suitable function
      * Execute  user input validation 
     """
+    # Before starting the game clear the screen
+    clear()
     while True:
         print("\n\n")
         print("+++++ Welcome to HangMan Game +++++ ")
@@ -129,9 +143,10 @@ def main():
         print("\n\n")
         print("Please enter valid options like 1, 2, 3 \n")
         # get user input 
-        user_choice = int(input("Enter your choice here : \n"))
+        user_choice = int(input("Enter your choice here : "))
 
         if user_choice == 1:
+            print("\n\n")
             print("Congratzz!! You started your game \n")
             # start the game
             run_game()
