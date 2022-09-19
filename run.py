@@ -90,10 +90,14 @@ def run_game():
     user_guess_letter = ""
     # if guess is correct then add the letter to user_guessed_word
     user_guessed_word=""
-
+    # this variable used to check whtether screen to clear or not
+    is_error = False
     # repeat the user guess until the number of life become 0 
     while (number_of_guess > 0):
-        #clear()
+        # In case of error no need to clear the screen
+        if not is_error:
+            clear()
+        is_error = False
         # To display gussed letter in the original word like _ _ X _ _
         # display_guss_letter = ""
         # if user guessed letter present in actual word then add guessed 
@@ -118,11 +122,18 @@ def run_game():
         print("\n\n")
         # Ask user to guess the letter
         user_guess_letter = input("Guess a letter here : ")
+        # check whether the guess letter is previosly gusses
+        if user_guess_letter in user_guessed_letters:
+            print(f"\nYou already guessed the letter: {user_guess_letter}")
+            print("Please guess another letter")
+            is_error = True
+            continue
         # validate the user guessed letter
         if (user_guess_letter in ascii_letters):
             user_guessed_letters += user_guess_letter
         else:
             print("\nPlease enter valid character \n")
+            is_error = True
             continue
 
         # user_guess_letter = input("Guess a letter here : ")
@@ -130,10 +141,12 @@ def run_game():
         # decrement the number of guess and draw hangman
         if user_guess_letter not in actual_word:
             number_of_guess -= 1
+            is_error = True
             print(draw_hangman(number_of_guess))
         else:
             print(f"\n Your guess is correct !!!  {user_guess_letter} found \n")
             user_guessed_word += user_guess_letter
+            is_error = True
 
 
 def main():
