@@ -5,6 +5,7 @@ from words import list_of_words
 from hangman import hangman_images
 import gspread
 from google.oauth2.service_account import Credentials
+from help import get_game_help
 
 # Global variable declaration
 SCOPE = [
@@ -190,7 +191,7 @@ def main():
             break
         elif user_choice == 2:
             # Game rules and hints to play
-            game_help()
+            get_game_help()
             break
         elif user_choice == 3:
             print("Your leaving the game. See you soon..")
