@@ -70,7 +70,7 @@ def run_game():
         print(" Example:  Deric \n")
         print("-"*80)
 
-        player_name = input("\n\nEnter your name here:  ")
+        player_name = input("\n\nEnter your name here:  \n")
         if validate_name(player_name):
             break
         else:
@@ -109,7 +109,7 @@ def run_game():
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
             print(f"\n Congratz You Won : You gussed the word {actual_word}")
-            input()
+            input("Please eneter any letter to continue...\n")
             main()
 
         # Display the number of guess left and all guessed letters
@@ -121,7 +121,7 @@ def run_game():
         print(10* " ", 50* '#', 10*" ")
         print("\n\n")
         # Ask user to guess the letter
-        user_guess_letter = input("Guess a letter here : ")
+        user_guess_letter = input("Guess a letter here : \n")
         # check whether the guess letter is previosly gusses
         if user_guess_letter in user_guessed_letters:
             print(f"\nYou already guessed the letter: {user_guess_letter}")
@@ -170,7 +170,7 @@ def main():
         print("\n\n")
         print("Please enter valid options like 1, 2, 3 \n")
         # get user input 
-        user_choice = (input("Enter your choice here : "))
+        user_choice = (input("Enter your choice here : \n"))
         # validate the user choice and it should contain only number
         if not user_choice.isdecimal():
             print("\n Invalid input. Pleasre enter valid options like 1, 2  and 3")
