@@ -152,7 +152,17 @@ def main():
         print("\n\n")
         print("Please enter valid options like 1, 2, 3 \n")
         # get user input 
-        user_choice = int(input("Enter your choice here : "))
+        user_choice = (input("Enter your choice here : "))
+        # validate the user choice and it should contain only number
+        if not user_choice.isdecimal():
+            print("\n Invalid input. Pleasre enter valid options like 1, 2  and 3")
+            continue
+        else:
+            try:
+                user_choice = int(user_choice)
+            except ValueError():
+                print("\n Invalid input. Pleasre enter valid options like 1, 2  and 3")
+                continue
 
         if user_choice == 1:
             print("\n\n")
