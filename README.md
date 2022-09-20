@@ -30,6 +30,12 @@ A live version of this website will be found here: https://hangman-gameapp.herok
 - [UX](#ux)
   - [Strategy](#strategy)
   - [User Demographic](#user-demographic)
+  - [User Stories](#user-stories)
+    - [Existing Members](#existing-members)
+    - [New Users](#new-users)
+  - [User Goals](#user-goals)
+  - [Scope](#scope)
+  - [Design](#design)
 ------------------------------------------------------------------------------------------------------------
 
 ## UX
@@ -62,3 +68,40 @@ Based on all the above requirements, built the game in such a way that
 ### User Demographic
 
  This application has been designed for users of all ages just for some fun, to test their knowledge and this game help to improve vocabulary
+
+### User Stories
+
+#### Existing Members
+
+ - As a Member: I want to play the game easily
+ - As a Member: Need to select mode of game like easy, medium and hard
+ - As a Member: I wan to see player won or loose the game
+ - As a member: Need to save number of guess took to predict the word
+
+#### New Users
+
+ - As a new User: I want to know how to play the game.
+ - As a new User: I want to the look and feel of the game and instructions should be simple.
+ - As a new User: I want to see and share the last 10 highest scores using social medias .
+
+### User Goals
+
+ - Easy to use the game by using keyboard with the help of instructions
+ - Rules should be clear and concise information to the player 
+ - Number of guess left, predicted word and previously gussed letters should be visible to   the player
+
+### Scope
+
+HangMan is a game which guess the letters in the secret word to solve the puzzle aims to familarize with python language and inbuilt libraries.The objective is to build a fun, interactive game for individuals of all ages.
+
+Users may play a fun and exciting game of HungMan against the computer and after each guess, plyaer will clearly know the number guess left to finish the game.
+
+### Design
+
+HangMan project's design has been influenced by the ”Portfolio Project 3 Scope” and "Love sandwitches" - projects.
+My design of the project's functionality, coding styles and comments influenced by my previous project "Rock Paper Scisssors".
+
+Main aim is to create a interactive clean and simple interactive terminal where there is a user to get clear info regarding the game in each step.
+
+HangMan is a simple game which has three pages rule.py module exlain how to play the game words.py moduke has list of words and run.py module contain the core functionality of the game. Computer pick the word randomly from words.py and ask the user to guess a letter.Game give three options like play Game, Help and Exit Game. 
+
