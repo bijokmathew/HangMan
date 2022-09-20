@@ -1,6 +1,6 @@
 ## HANGMAN Game
 
-![screenshot](images/responsive.png)
+![screenshot](assets/images/readme/responsive.png)
 
 Hangman is an old school favorite, a word game where the goal is simply to find the missing word.You will be presented with a number of blank spaces representing the missing letters you need to find.Use the keyboard to guess a letter. Guessing a new letter each go, if you choose correct, the terminal will tell you and show you where it belongs in the randomly chosen word, if your guess is wrong, then start to draw "hangman" until it is complete.
 
@@ -36,6 +36,10 @@ A live version of this website will be found here: https://hangman-gameapp.herok
   - [User Goals](#user-goals)
   - [Scope](#scope)
   - [Design](#design)
+  - [Flowchart](#flowchart)
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Future Features](#future-features)
 ------------------------------------------------------------------------------------------------------------
 
 ## UX
@@ -105,3 +109,102 @@ Main aim is to create a interactive clean and simple interactive terminal where 
 
 HangMan is a simple game which has three pages rule.py module exlain how to play the game words.py moduke has list of words and run.py module contain the core functionality of the game. Computer pick the word randomly from words.py and ask the user to guess a letter.Game give three options like play Game, Help and Exit Game. 
 
+### Flowchart
+![screenshot](assets/images/readme/flowchart.png)
+
+[Back to top](#hangman-game)
+
+## Features 
+![Game](assets/images/readme/fullscreen.png)
+HangMan is a single page game that consists of these sections:
+
+ - Landing page with main menu
+ - Play Game 
+ - Help
+ - Exit   
+ - Game info contains no of guess left, previously guessed letters and predict word
+ - Message
+
+### Existing Features
+
+<details><summary> Landing page </summary>
+
+![Landing page](assets/images/readme/)
+
+ The user is firstly presented with a menu page, showing the options for the game. 
+  1 -> Play Game
+  2 -> Help
+  3 -> Exit Game
+</details>
+<details><summary>Play Game </summary>
+
+![Play Game](assets/images/readme/)
+ When you select option 1 in the main menu, the game will start. First, the user will get a request for a name, which will be added to the Winner's board if they win at the end of the game.
+ validate the name based on the below rule
+ - Name should contain only alphabets
+ - Name should contain atleast 2 letters 
+
+![screenshot](assets/images/readme)
+
+- Current word selected and displayed as "-------".
+- Display number of guess left
+- Display previously guessed letters  
+
+![screenshot](assets/images/readme)
+
+- For each wrong guess and a part of hangman displayed based on the number of guess left.
+
+![screenshot](assets/images/readme)
+![screenshot](assets/images/readme)
+
+- Every correct guess is displayed, add the letter to prevously guessed letters and place the letter in correct position in the current word.
+
+![screenshot](assets/images/readme)
+
+- Once the number of guess become zeor or user predicts the word correctly then the game finished and will display whether they've won or lost, either way the user can see the whole word displayed.
+
+![screenshot](assets/images/readme)
+![screenshot](assets/images/readme)
+
+
+</details>
+
+<details><summary>Help Option </summary>
+
+![Help](assets/images/readme/)
+
+ - After selecting 'Help' from the main menu, it will display the procedure to display the game in detail. 
+
+</details>
+<details><summary>Exit Game </summary>
+
+![Exit](assets/images/readme/)
+
+ - If user want to exit the game, he can use this option from the main menu. This will take the user out of the game application and inform the user he left the game app
+  
+</details>
+<details><summary> Game info section </summary>
+
+![Game info section](assets/images/readme/)
+
+ - The game info section is on the first page and it always visible to the user after starting the game.
+ - This area contains number of guess left, previously guessed letters and incomplete word 
+
+</details>
+<details><summary> Info section </summary>
+
+![Rules](assets/images/readme/)
+ 
+ - This section display the message to the user to proceed the game
+ - Game handled all error case like validating the user input for menu selection, input for guess the letter, and input for the name.
+ - All the above cases user will get the proper message and action plan
+ - In addition to the above validation handled try-- except block as well  
+</details>
+
+### Future Features
+
+- To add different mode for the game like easy, medium and hard.
+- To add an option for sharing last ten high score on social medias.
+- To store player name and their succes based on the number guess they made to predict the word
+  
+[Back to top](#hangman-game)

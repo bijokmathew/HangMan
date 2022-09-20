@@ -143,9 +143,12 @@ def run_game():
         if user_guess_letter not in actual_word:
             number_of_guess -= 1
             is_error = True
+            # number of guess =0 means user lose the game 
+            if number_of_guess == 0:
+                print(f"\n", 10* ' ', "Sorry you failed to guess the word: {actual_word} ")
             print(draw_hangman(number_of_guess))
         else:
-            print(f"\n Your guess is correct !!!  {user_guess_letter} found \n")
+            print(20* ' ', f"\n Your guess is correct !!!  {user_guess_letter} found \n")
             user_guessed_word += user_guess_letter
             is_error = True
 
