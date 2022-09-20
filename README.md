@@ -40,6 +40,8 @@ A live version of this website will be found here: https://hangman-gameapp.herok
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
+- [Technologies used](#technologies-used)
+  - [Python libraries and API](#python-libraries-and-api)
 ------------------------------------------------------------------------------------------------------------
 
 ## UX
@@ -208,3 +210,24 @@ HangMan is a single page game that consists of these sections:
 - To store player name and their succes based on the number guess they made to predict the word
   
 [Back to top](#hangman-game)
+
+## Technologies used
+
+- [Python](https://www.python.org/)
+- [HTML](https://en.wikipedia.org/wiki/HTML) - Included in the Code Institute template
+- [CSS](https://en.wikipedia.org/wiki/CSS) - Included in the Code Institute template
+- JavaScript: Included in the Code Institute template.
+- GitHub - Used to store my code after pushing from Gitpod.
+- GitPod - Used as a development environment.
+- Git - Used for version control of my code.
+- Code has been tested and corrected using [PEP8 Online Validator](http://pep8online.com/).
+
+### Python libraries and API
+
+- [Os](https://docs.python.org/3/library/os.html)
+- [Gspread](https://docs.gspread.org/en/latest/)
+- [Google Auth](https://google-auth.readthedocs.io/en/master/)
+- [Random](https://docs.python.org/3/library/random.html)
+- [String](https://docs.python.org/3/library/string.html)
+
+  
