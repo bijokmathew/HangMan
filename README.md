@@ -1,31 +1,34 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## HANGMAN Game
 
-Welcome bijokmathew,
+![screenshot](images/responsive.png)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Hangman is an old school favorite, a word game where the goal is simply to find the missing word.You will be presented with a number of blank spaces representing the missing letters you need to find.Use the keyboard to guess a letter. Guessing a new letter each go, if you choose correct, the terminal will tell you and show you where it belongs in the randomly chosen word, if your guess is wrong, then start to draw "hangman" until it is complete.
 
-## Reminders
+The actual words are chosen randomly from many words. The game gives number of guess equal to the length of the word. 
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+## How to play
+   1. Please enter valid options like 1,2,3 to play the game
+   2. Enter valid name i.e name contains only alphabet and minumum 2 letter
+   3. Guess only single alphabet letter and number of guess is eaual to the length of  the actual word
+   4. If guessed letter is not found in the actual word then you loose one number of  guess and display the hangman based on the number of life remaining
+   5. If guessed letter is already gussed previously then try to guess another letter and you wont loose the number of guess
+   6. If guessed letter and actual word are same then you won the game
+   7. If number of guess is zeor and guessed letter and actual word are not same then you loose the game    
 
-## Creating the Heroku app
+## Business goals of the website 
+This website is developed as part of the third project in diploma in Software Development from The Code Institute and this project mainly focued on the python logic and familier with python language.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+A live version of this website will be found here: https://hangman-gameapp.herokuapp.com/
 
-1. `heroku/python`
-2. `heroku/nodejs`
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Table of Contents ##
+  
+<details><summary>UX</summary>
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- [HANGMAN Game](#hangman-game)
+- [How to play](#how-to-play)
+- [Business goals of the website](#business-goals-of-the-website)
+- [Table of Contents](#table-of-contents)
 
-Connect your GitHub repository and deploy as normal.
+</details>
 
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
