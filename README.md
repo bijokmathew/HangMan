@@ -22,13 +22,43 @@ A live version of this website will be found here: https://hangman-gameapp.herok
 
 
 ## Table of Contents ##
-  
-<details><summary>UX</summary>
 
 - [HANGMAN Game](#hangman-game)
 - [How to play](#how-to-play)
 - [Business goals of the website](#business-goals-of-the-website)
 - [Table of Contents](#table-of-contents)
+- [UX](#ux)
+  - [Strategy](#strategy)
+  - [User Demographic](#user-demographic)
+------------------------------------------------------------------------------------------------------------
 
-</details>
+## UX
 
+### Strategy
+
+This Game is ment for:
+
+ - Fun activity 
+ - Guess word puzzle
+ - Help to improve vocabulary 
+ - As the rules are easy, kids can enjoy
+ - Any age person can enjoy the game 
+
+What user looking for?
+ - Easy to understand the game rules
+ - Easy to play using the button and instructions
+ - Numbe of guess left and user guessed letters should be visible
+ - User shoud know if any thing goes wrong by showing clear message
+ - Once the game is over it should show user won or lost
+ - Player want to go for next level
+ - Player wanr option to enter their name on the score board
+
+Based on all the above requirements, built the game in such a way that 
+  - Option Help give the detail instructions which make game easy to play
+  - Clear message tells the user what to do next during the game 
+  - Guessed word, number of guess left, previously guessed letters visible always to the user 
+  - Display the message that player won or loose game
+  
+### User Demographic
+
+ This application has been designed for users of all ages just for some fun, to test their knowledge and this game help to improve vocabulary
