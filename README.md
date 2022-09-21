@@ -47,6 +47,10 @@ A live version of this website will be found here: https://hangman-gameapp.herok
   - [Validator Testing](#validator-testing)
 - [Development and Deployment](#development-and-deployment)
   - [Using Heroku](#using-heroku)
+- [Content](#content)
+- [Credits](#credits)
+  - [For code inspiration, design inputs, help and advice. Many thanks to:](#for-code-inspiration-design-inputs-help-and-advice-many-thanks-to)
+  - [Great sources](#great-sources)
 ------------------------------------------------------------------------------------------------------------
 
 ## UX
@@ -313,5 +317,36 @@ During the development stage, found many minor and major issues.Few of issu fixe
 - Now the app is being built, it installs Python first,  
 and then each of the dependencies listed in requirements.txt file, then nodejs is installed and the various packages required to run the mock terminal. 
 - And finally we see the “App was  successfully deployed” message and a button to take us to our deployed  link
+
+[Back to top](#hangman-game)
+
+## Content 
+
+ - All content for the website taken from  Google and Wikipedia
+
+## Credits 
+
+### For code inspiration, design inputs, help and advice. Many thanks to:
+
+ Martina Terlevic
+  - My mentor at Code Institute and she guided me throught the project.
+  - Friends and Teachers at Code Institute: Thank you for all your knowledge and insight.
+  - Walkthrough project ”Love Sandwitch and "Portfolio 3 Project Scope" has provided inspiration and knowledge.
+
+### Great sources
+
+  - Sites that has provided me with knowledge and information that has been vital to this project:
+
+  - https://www.w3schools.com/
+  - https://stackoverflow.com
+  - https://learn.codeinstitute.net/dashboard 
+  - https://www.youtube.com
+  - Python docs: [A Complete Guide to python](https://www.python.org/doc/)
+
+   Screenshot in this ReadMe was made using:
+
+   http://ami.responsivedesign.is/
+
+Best regards
 
 [Back to top](#hangman-game)
