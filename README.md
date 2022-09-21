@@ -42,6 +42,11 @@ A live version of this website will be found here: https://hangman-gameapp.herok
   - [Future Features](#future-features)
 - [Technologies used](#technologies-used)
   - [Python libraries and API](#python-libraries-and-api)
+- [UX Stories Testing](#ux-stories-testing)
+  - [Bugs](#bugs)
+  - [Validator Testing](#validator-testing)
+- [Development and Deployment](#development-and-deployment)
+  - [Using Heroku](#using-heroku)
 ------------------------------------------------------------------------------------------------------------
 
 ## UX
@@ -230,4 +235,83 @@ HangMan is a single page game that consists of these sections:
 - [Random](https://docs.python.org/3/library/random.html)
 - [String](https://docs.python.org/3/library/string.html)
 
+  ## UX Stories Testing 
+
+Below are some images for reference with the UX Stories Testing.
+
+![alt text](assets/images/readme/)
+![alt text](assets/images/readme/)
+![alt text](assets/images/readme/)
+![alt text](assets/images/readme/)
+![alt text](assets/images/readme/)
+![alt text](assets/images/readme/)
+
+1. As a new user, I want to know how to play the game.
+
+    - User can use the Help option from the menu to undertsand more about the game.
+    - Each stage of the game proper message displyaed which will guide the user for further action.
+
+2. As a new user, I want to know the states of the game.
+
+    - The info section which contain number of guess left, previously gussed letter and the current word state.
+    - The above section is always visible to the user during the game
+
+3. As a new user, I want to know how to proceed if I enter worng data.
+
+   - In each stage there is proper validation check for user input and based on the validation result appropriate message shows to the user for further action
+   - Also used python error handing method like try - except block for catching any run time exception   
+
+4. As a repeat visitor, I want to restart the game at some point.
+
+    - User can use 'Run program' option available in the terminal to start the game again
+    - If user want to exit the game then user can use option 3 Exit Game
+
+5. As a repeat visitor, I want to see actual word in both win and loose case .
+
+    - Message section clearly display you won or loose the game and display the actual word in both case
+   
+[Back to top](#hangman-game)
+
+### Bugs 
+
+During the development stage, found many minor and major issues.Few of issu fixed during testing listed below .
+
+1. Start game and give special charactor istead of 1,2,3 
+   run time exception happend.
+
+   Solution: checked user input is a numeric otherwise asked user to enter valid option
+
+2. During the game, if the user guessed letter is not correct then the hangman is not showing
+   
+   Solution: In code we used clear() function to clear the screen on each guess. So if any message need to display then we should not call clear(). Added the code for the same.
+ 
+### Validator Testing 
+
+  - Code has been tested and corrected via the PEP8 Online Validator http://pep8online.com/.
+
+[Back to top](#hangman-game)
+
+## Development and Deployment
+
+ - The development environment used for this project is GitPod and also used github version control tool to stote the project.Github help to keep track each version and easily track the changes made to the source code. The GitPod environment was created using a template provided by Code Institute.
   
+ - The live version of this project is deployed using [Heroku](https://heroku.com)
+
+### Using Heroku
+
+- A requirements.txt needs to be created in the same folder as the .py file in Gitpod. This needs to have a list of necessary libraries used in the project by using the command 'Pip3 freeze > requirements.txt'.This list required to run the project in Heroku.
+- Log in to Heroku (or create an account if otherwise)
+-  Click on New in the Heroku dashboard and select ”Create new app”
+- Give the application an original name, choose your region and click “Create App”
+- In the settings tab for the new application two Config Vars are necessary:
+    - One is named CREDS and contains the credentials key for Google Drive API
+    - One is name PORT and has the value of 8000
+- Added two buildpack in the following order: Python and Nodejs 
+- Go to "Deploy" section, and click the Github icon in 'Deployment Method' and connect
+- Search the project 'HangMan' in the git repository and connect to it
+- In this case, this project was set to 'Automatic Deploys',then Heroku will  rebuild the app every time you push a new change to your code to Github
+- Now the app is being built, it installs Python first,  
+and then each of the dependencies listed in requirements.txt file, then nodejs is installed and the various packages required to run the mock terminal. 
+- And finally we see the “App was  successfully deployed” message and a button to take us to our deployed  link
+
+[Back to top](#hangman-game)
