@@ -83,8 +83,8 @@ def run_game():
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
     print(actual_word)
-    # define the number of guess and it is equal to the length of the actual word
-    number_of_guess = len(actual_word)
+    # define the number of life and it is equal to the length of the actual word
+    number_of_life = len(actual_word)
     # store all the user gussed letters for validating user repeating the same letter
     user_guessed_letters = ""
     # store user guess letter
@@ -94,7 +94,7 @@ def run_game():
     # this variable used to check whtether screen to clear or not
     is_error = False
     # repeat the user guess until the number of life become 0 
-    while (number_of_guess >= 0):
+    while (number_of_life >= 0):
         # In case of error no need to clear the screen
         if not is_error:
             clear()
@@ -109,23 +109,24 @@ def run_game():
         print(actual_word)
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
-            print(f"\n Congratz You Won : You gussed the word {actual_word}")
-            input("Please eneter any letter or 'Enter' to return to main menu...\n")
+            number_of_life_used = len(actual_word) - number_of_life
+            print(f"\n Congratz You Won : You gussed the word {actual_word} using {number_of_life_used} lifes")
+            input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
             main()
 
-        # Display the number of guess left and all guessed letters
+        # Display the number of life left, actual word and all guessed letters
         print("\n\n")
         print(10* " ", 50* '#',"\n")
-        print(20* " ", f"Number of guess left :     {number_of_guess}", 20* " ")
+        print(20* " ", f"Number of life left :     {number_of_life}", 20* " ")
         print(20* " ", f"Gussed letter        :     {user_guessed_letters}", 20* " ")
         print(20* " ", f"Actual word          :     {display_guss_letter}", 20* " ","\n")
         print(10* " ", 50* '#', 10*" ")
         print("\n\n")
-        # number of guess =0 means user lose the game 
-        if number_of_guess == 0:
+        # number of life =0 means user lose the game
+        if number_of_life == 0:
             print("\n", 6* ' ', f"Sorry you failed to guess the word: {actual_word} ")
-            print(draw_hangman(number_of_guess))
-            input("Please eneter any letter or 'Enter' to return to main menu...\n")
+            print(draw_hangman(number_of_life))
+            input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
             main()
             
         # Ask user to guess the letter
@@ -146,9 +147,9 @@ def run_game():
 
         # user_guess_letter = input("Guess a letter here : ")
         # if guessed letter not present in present in actual word then
-        # decrement the number of guess and draw hangman
+        # decrement the number of life and draw hangman
         if user_guess_letter not in actual_word:
-            number_of_guess -= 1
+            number_of_life -= 1
             is_error = True
         else:
             print(20* ' ', f"\n Your guess is correct !!!  {user_guess_letter} found \n")
