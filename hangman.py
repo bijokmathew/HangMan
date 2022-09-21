@@ -1,7 +1,8 @@
 # draw hangman images for ten failure case
 hangman_images = {
     0: """
-You let a good man die !!
+        You let a good man die !!
+
         --------------
               O  __ |
             / | \\  

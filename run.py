@@ -94,7 +94,7 @@ def run_game():
     # this variable used to check whtether screen to clear or not
     is_error = False
     # repeat the user guess until the number of life become 0 
-    while (number_of_guess > 0):
+    while (number_of_guess >= 0):
         # In case of error no need to clear the screen
         if not is_error:
             clear()
@@ -110,7 +110,7 @@ def run_game():
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
             print(f"\n Congratz You Won : You gussed the word {actual_word}")
-            input("Please eneter any letter to continue...\n")
+            input("Please eneter any letter or 'Enter' to return to main menu...\n")
             main()
 
         # Display the number of guess left and all guessed letters
@@ -121,6 +121,13 @@ def run_game():
         print(20* " ", f"Actual word          :     {display_guss_letter}", 20* " ","\n")
         print(10* " ", 50* '#', 10*" ")
         print("\n\n")
+        # number of guess =0 means user lose the game 
+        if number_of_guess == 0:
+            print("\n", 6* ' ', f"Sorry you failed to guess the word: {actual_word} ")
+            print(draw_hangman(number_of_guess))
+            input("Please eneter any letter or 'Enter' to return to main menu...\n")
+            main()
+            
         # Ask user to guess the letter
         user_guess_letter = input("Guess a letter here : \n")
         # check whether the guess letter is previosly gusses
@@ -143,15 +150,11 @@ def run_game():
         if user_guess_letter not in actual_word:
             number_of_guess -= 1
             is_error = True
-            # number of guess =0 means user lose the game 
-            if number_of_guess == 0:
-                print(f"\n", 10* ' ', "Sorry you failed to guess the word: {actual_word} ")
-            print(draw_hangman(number_of_guess))
         else:
             print(20* ' ', f"\n Your guess is correct !!!  {user_guess_letter} found \n")
             user_guessed_word += user_guess_letter
             is_error = True
-
+    
 
 def main():
     """
