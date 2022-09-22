@@ -1,6 +1,7 @@
 import random
 import os
 from string import ascii_letters
+from termcolor import colored
 from words import list_of_words
 from hangman import hangman_images
 import gspread

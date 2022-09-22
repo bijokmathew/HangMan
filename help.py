@@ -1,11 +1,13 @@
+from termcolor import colored
+
 def get_game_help():
     """
     * Define the how to play the game 
     * Explain details of the game like invalid entry, error cases
     """
-    print("^" * 80)
+    print(colored("-" * 120,'magenta'))
     print('\n')
-    print(" " * 30 + "How to play the GAME")
+    print(colored(" " * 30 + "How to play the GAME",'yellow'))
     rule_list = (
         '\n1: Please enter valid options like 1,2,3 to play the game'
         '\n'
@@ -28,8 +30,8 @@ def get_game_help():
         '\n7: If number of guess is zeor and guessed letter and actual word'
               'are not same then you loose the game')
 
-    print(rule_list)
+    print(colored(rule_list,'blue'))
 
-    print("^" * 80, 'white')
+    print("\n\n",colored("-" * 120, 'magenta'))
     print('\n')
-    input(" " * 24 + "Press Enter to return to the menu \n" + ' ' * 39)
+    input(" " * 24 + colored("Press Enter to return to the menu \n",'green') + ' ' * 39)
