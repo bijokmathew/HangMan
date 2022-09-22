@@ -19,7 +19,69 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hangman-game-score")
-scores = SHEET.worksheet("higher-score")
+scores_sheet = SHEET.worksheet("higher-score")
+
+
+def get_top_5_score():
+    """
+    Get name and number-of life used of top 5 from the
+    hangman-game-score sheet and return the same to
+    the caller
+    """
+    # Get all saved players and their score from the sheet
+    total_list_players_from_sheet = scores_sheet.get_all_values()
+    print("total_list_players_from_sheet =", total_list_players_from_sheet)
+    # return top 5 player list
+    return total_list_players_from_sheet[:5]
+
+
+def get_given_player_score_from_score_sheet(player_name):
+    """
+    * check the given name is present in score sheet
+    * if it is available then return the number-of-life-used
+    * if it is not present then return False
+    """
+    # Get all saved players and their score from the sheet
+    total_list_players_from_sheet = scores_sheet.get_all_values()
+    # Check whether the player name is already present
+    for players in total_list_players_from_sheet:
+        if player_name in players:
+            print("player  ==", players)
+            return players
+        else:
+            print(" get_given_player_score_from_score_sheet  player  ==", players)
+            return False
+
+
+def update_current_score_is_in_toplist(number_of_life_used,player_name):
+    """
+    * This function checks current value of number_of_life_used is
+      smaller than in top 5 list of score sheet
+    * If it smaller then return True else return False
+    """
+     # Get all saved players and their score from the sheet
+    total_list_players_from_sheet = scores_sheet.get_all_values()
+    # skip the first row as it is a titles
+    total_list_players_from_sheet = total_list_players_from_sheet[1:]
+    print("hhh total_list_players_from_sheet == ",total_list_players_from_sheet)
+    for players in total_list_players_from_sheet:
+        print("*** player[1] = ", players)
+        print(total_list_players_from_sheet.index(players))
+        if number_of_life_used < int(players[1]):
+            print(total_list_players_from_sheet.index(players))
+            index = total_list_players_from_sheet.index(players)
+            scores_sheet.delete_row(index+1)
+            scores_sheet.insert_row([player_name, number_of_life_used], index+1)
+            print(f"You score are updated in {index+1} out of 5 ")
+            break
+        else:
+            print("NOOOOOOTTTTTTT Found")
+
+
+def add_to_score_sheet(name, number_of_life_used):
+    #get_given_player_score_from_score_sheet(name)
+    update_current_score_is_in_toplist(number_of_life_used, name)
+
 
 def clear():
     """
@@ -111,7 +173,9 @@ def run_game():
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
             number_of_life_used = len(actual_word) - number_of_life
+            add_to_score_sheet(player_name,number_of_life_used)
             print(f"\n Congratz You Won : You gussed the word {actual_word} using {number_of_life_used} lifes")
+            # Add player name and score to score sheet   
             input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
             main()
 
