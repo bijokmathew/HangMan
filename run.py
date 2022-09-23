@@ -9,6 +9,8 @@ from google.oauth2.service_account import Credentials
 from help import get_game_help
 
 # Global variable declaration
+
+# For accessing google sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -237,23 +239,27 @@ def main():
 
         print("   1.   Play Game   ")
         print("   2.   Help   ")
-        print("   3.   Exit Game  ")
+        print("   3.   High Scores  ")
+        print("   4.   Exit Game  ")
 
         print("\n\n")
-        print("Please enter valid options like 1, 2, 3 \n")
+        print("+++++  ++++ +++++ +++++ +++++  +++++ ")
+        print("\n\n")
+        print(" Please enter valid options like 1, 2, 3 and 4 \n")
         # get user input 
-        user_choice = (input("Enter your choice here : \n"))
+        user_choice = (input(" Enter your choice here : \n"))
         # validate the user choice and it should contain only number
         if not user_choice.isdecimal():
-            print("\n Invalid input. Pleasre enter valid options like 1, 2  and 3")
+            clear()
+            print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
             continue
         else:
             try:
                 user_choice = int(user_choice)
             except ValueError():
-                print("\n Invalid input. Pleasre enter valid options like 1, 2  and 3")
+                clear()
+                print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
                 continue
-
         if user_choice == 1:
             print("\n\n")
             print("Your game started .... \n")
@@ -265,8 +271,17 @@ def main():
             get_game_help()
             break
         elif user_choice == 3:
+            # display top 5 scores from the google sheet
+            get_top_5_score()
+            break
+        elif user_choice == 4:
+            clear()
             print("Your leaving the game. See you soon..")
             exit()
+        else:
+            clear()
+            print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
+            continue
 
 
 main()
