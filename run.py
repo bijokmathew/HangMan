@@ -107,8 +107,8 @@ def validate_name(name):
         return True
 
 
-def draw_hangman(number_of_guess):
-    return hangman_images[number_of_guess]
+def draw_hangman(number_of_life):
+    return hangman_images[number_of_life]
 
 
 def run_game():
@@ -129,7 +129,7 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        print("\nPlease enter your name\n")
+        print("\n Please enter your name\n")
         print("-"*80)
         print("\n Name should contain only letters and should not have any special characters")
         print(" Example:  Deric \n")
@@ -161,7 +161,8 @@ def run_game():
     while (number_of_life >= 0):
         # In case of error no need to clear the screen
         if not is_error:
-            clear()
+            print(0)
+            #clear()
         is_error = False
         # To display gussed letter in the original word like _ _ X _ _
         # display_guss_letter = ""
@@ -173,8 +174,9 @@ def run_game():
         print(actual_word)
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
+            clear()
             number_of_life_used = len(actual_word) - number_of_life
-            add_to_score_sheet(player_name,number_of_life_used)
+            add_to_score_sheet(player_name, number_of_life_used)
             print(f"\n Congratz You Won : You gussed the word {actual_word} using {number_of_life_used} lifes")
             # Add player name and score to score sheet   
             input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
@@ -190,6 +192,7 @@ def run_game():
         print("\n\n")
         # number of life =0 means user lose the game
         if number_of_life == 0:
+            clear()
             print("\n", 6* ' ', f"Sorry you failed to guess the word: {actual_word} ")
             print(draw_hangman(number_of_life))
             input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
@@ -199,15 +202,17 @@ def run_game():
         user_guess_letter = input("Guess a letter here : \n")
         # check whether the guess letter is previosly gusses
         if user_guess_letter in user_guessed_letters:
-            print(f"\nYou already guessed the letter: {user_guess_letter}")
-            print("Please guess another letter")
+            clear()
+            print(f"\n You already guessed the letter: {user_guess_letter}")
+            print("\n Please guess another letter")
             is_error = True
             continue
         # validate the user guessed letter
         if (user_guess_letter in ascii_letters):
             user_guessed_letters += user_guess_letter
         else:
-            print("\nPlease enter valid character \n")
+            clear()
+            print("\n Please enter valid character \n")
             is_error = True
             continue
 
@@ -215,9 +220,13 @@ def run_game():
         # if guessed letter not present in present in actual word then
         # decrement the number of life and draw hangman
         if user_guess_letter not in actual_word:
+            clear()
+            print(draw_hangman(number_of_life))
+            print("\n\n Oho sorry!!  wrong guess, Please try again..")
             number_of_life -= 1
             is_error = True
         else:
+            clear()
             print(20* ' ', f"\n Your guess is correct !!!  {user_guess_letter} found \n")
             user_guessed_word += user_guess_letter
             is_error = True
@@ -228,7 +237,7 @@ def main():
      * Game execution start here
      * Display the menu options to the user
      * Get the user choice and execute the suitable function
-     * Execute  user input validation 
+     * Execute  user input validation
     """
     # Before starting the game clear the screen
     clear()
