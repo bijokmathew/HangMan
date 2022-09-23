@@ -35,52 +35,51 @@ def get_top_5_score():
     return total_list_players_from_sheet[:5]
 
 
-def get_given_player_score_from_score_sheet(player_name):
-    """
-    * check the given name is present in score sheet
-    * if it is available then return the number-of-life-used
-    * if it is not present then return False
-    """
-    # Get all saved players and their score from the sheet
-    total_list_players_from_sheet = scores_sheet.get_all_values()
-    # Check whether the player name is already present
-    for players in total_list_players_from_sheet:
-        if player_name in players:
-            print("player  ==", players)
-            return players
-        else:
-            print(" get_given_player_score_from_score_sheet  player  ==", players)
-            return False
-
-
-def update_current_score_is_in_toplist(number_of_life_used,player_name):
+def update_current_score_in_toplist(number_of_life_used, player_name):
     """
     * This function checks current value of number_of_life_used is
       smaller than in top 5 list of score sheet
-    * If it smaller then return True else return False
+    * If it smaller then added to sheet at current position
+    * If the sheet is empty or contain less than 5 entries then need to
+      add the current score to the score sheet 
     """
-     # Get all saved players and their score from the sheet
+    # Bydefault the total number of entry in the score sheet is 5
+    total_no_of_entry_scoresheet = 5 
+    # Get all saved players and their score from the sheet
     total_list_players_from_sheet = scores_sheet.get_all_values()
+    curent_no_of_entry_scoresheet = len(total_list_players_from_sheet)
+    print("curent_no_of_entry_scoresheet = ", curent_no_of_entry_scoresheet)
+    print("before  total_list_players_from_sheet == ", total_list_players_from_sheet)
     # skip the first row as it is a titles
-    total_list_players_from_sheet = total_list_players_from_sheet[1:]
-    print("hhh total_list_players_from_sheet == ",total_list_players_from_sheet)
-    for players in total_list_players_from_sheet:
-        print("*** player[1] = ", players)
-        print(total_list_players_from_sheet.index(players))
-        if number_of_life_used < int(players[1]):
-            print(total_list_players_from_sheet.index(players))
-            index = total_list_players_from_sheet.index(players)
+    #  total_list_players_from_sheet = total_list_players_from_sheet[1:]
+    print("hhh total_list_players_from_sheet == ", total_list_players_from_sheet[1][1])
+    index = 0
+    
+    for index in range(curent_no_of_entry_scoresheet):
+        isPresent = False
+        print("index",index)
+        if number_of_life_used <= int(total_list_players_from_sheet[index][1]):
+            isPresent = True
+            print(index)
             scores_sheet.delete_row(index+1)
             scores_sheet.insert_row([player_name, number_of_life_used], index+1)
-            print(f"You score are updated in {index+1} out of 5 ")
+            print(f"You score are updated in {index+1} out of 5 ") 
             break
         else:
-            print("NOOOOOOTTTTTTT Found")
+            continue
+    index += 1
+    if index < total_no_of_entry_scoresheet and isPresent == False:
+        print("index and total_no_of_entry_scoresheet ", index,  total_no_of_entry_scoresheet)
+        scores_sheet.append_row([player_name, number_of_life_used])
+        print(f"You score are updated in {index+1} out of 5 ")
 
+    elif isPresent == False:
+        print("Your score is not in the first five top list.\
+                        Please try again ")
 
 def add_to_score_sheet(name, number_of_life_used):
     #get_given_player_score_from_score_sheet(name)
-    update_current_score_is_in_toplist(number_of_life_used, name)
+    update_current_score_in_toplist(number_of_life_used, name)
 
 
 def clear():
