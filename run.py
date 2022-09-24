@@ -28,7 +28,7 @@ def display_top_5_score():
     """
     * This function get all datas ie 5 list from the
       score sheet
-    * Display name and their scores in proper manner   
+    * Display name and their scores in proper manner
     """
     # Get all saved players and their score from the sheet
     total_list_players_from_sheet = scores_sheet.get_all_values()
@@ -37,20 +37,19 @@ def display_top_5_score():
     print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
     print('{:43s} {:20s} '.format(colored("  Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
     print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
-    
     for player in total_list_players_from_sheet:
         print('{:47s} {:20s}  '.format(colored("  "+player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
     print(colored("________________________________________________________________\n", 'white', attrs=['bold']))
     print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-          colored("any letter", 'white', attrs=['bold']), 
-          colored("or", 'blue', attrs=['bold']), 
+          colored("any letter", 'white', attrs=['bold']),
+          colored("or", 'blue', attrs=['bold']),
           colored(" Enter", 'white', attrs=['bold']),
           colored("to return to main menu...\n", 'blue', attrs=['bold']))
-    try:      
+    try:
         input("\n ")
     except BaseException:
         pass
-    main()   
+    main()
 
 
 def update_current_score_in_toplist(number_of_life_used, player_name):
@@ -59,7 +58,7 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
       smaller than in top 5 list of score sheet
     * If it smaller then added to sheet at current position
     * If the sheet is empty or contain less than 5 entries then need to
-      add the current score to the score sheet 
+      add the current score to the score sheet
     """
     # Bydefault the total number of entry in the score sheet is 5
     total_no_of_entry_scoresheet = 5
@@ -68,11 +67,10 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
     # Current no of entries in the sheet
     curent_no_of_entry_scoresheet = len(total_list_players_from_sheet)
     index = 0
-    
     for index in range(curent_no_of_entry_scoresheet):
         isPresent = False
         # if the current score is less than in the list, then update the current
-        # score in the sheet 
+        # score in the sheet
         if number_of_life_used <= int(total_list_players_from_sheet[index][1]):
             isPresent = True
             scores_sheet.delete_rows(index+1)
@@ -86,7 +84,7 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
             continue
     index += 1
     # if the current no of entries in the sheet is less than 5
-    # then append the current score to the sheet 
+    # then append the current score to the sheet
     if index < total_no_of_entry_scoresheet and isPresent == False:
         scores_sheet.append_row([player_name, number_of_life_used])
         print(colored("You score are updated in ", 'green', attrs=['bold']),
@@ -125,7 +123,7 @@ def draw_hangman(number_of_life):
     """
     * This function return the hunmans based on the
       number of life.
-    * Hangmans are already defined in hangman.py  
+    * Hangmans are already defined in hangman.py
     """
     return hangman_images[number_of_life]
 
@@ -181,11 +179,11 @@ def run_game():
     user_guess_letter = ""
     # if guess is correct then add the letter to user_guessed_word
     user_guessed_word = ""
-    # repeat the user guess until the number of life become 0 
+    # repeat the user guess until the number of life become 0
     while (number_of_life >= 0):
         # To display gussed letter in the original word like _ _ X _ _
         # display_guss_letter = ""
-        # if user guessed letter present in actual word then add guessed 
+        # if user guessed letter present in actual word then add guessed
         # letter else add "_" to the display word
         display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
         display_guss_letter = ''.join(display_guss_letter)
@@ -194,20 +192,20 @@ def run_game():
             clear()
             number_of_life_used = len(actual_word) - number_of_life
             print(colored("\n Congratz You Won : You gussed the word",
-                  'green', attrs=['bold']), colored(f"{actual_word}", 
+                  'green', attrs=['bold']), colored(f"{actual_word}",
                   'white', attrs=['bold']), colored(" using",
-                  'green', attrs=['bold']), colored(f"{number_of_life_used}", 
+                  'green', attrs=['bold']), colored(f"{number_of_life_used}",
                   'white', attrs=['bold']),
                   colored(" lifes", 'green', attrs=['bold']))
             # add the current score in to the sheet
             update_current_score_in_toplist(number_of_life_used, player_name)
             # Ask user to continue or exit the game
             print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-                  colored("any letter", 'white', attrs=['bold']), 
-                  colored("or", 'blue', attrs=['bold']), 
+                  colored("any letter", 'white', attrs=['bold']),
+                  colored("or", 'blue', attrs=['bold']),
                   colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
-            try:    
+            try:
                 input("\n ")
             except BaseException:
                 pass
@@ -229,16 +227,15 @@ def run_game():
             print(draw_hangman(number_of_life))
             # Ask user to continue or exit the game
             print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-                  colored("any letter", 'white', attrs=['bold']), 
-                  colored("or", 'blue', attrs=['bold']), 
+                  colored("any letter", 'white', attrs=['bold']),
+                  colored("or", 'blue', attrs=['bold']),
                   colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
             try:
                 input("\n ")
             except BaseException:
-                pass 
+                pass
             main()
-            
         # Ask user to guess the letter
         try:
             user_guess_letter = input(colored("Guess a letter here : \n", 'blue', attrs=['bold']))
@@ -276,8 +273,6 @@ def run_game():
                   colored("\n Your guess is correct !!! letter ", 'green'),
                   user_guess_letter, colored(" found in the word \n", 'green'))
             user_guessed_word += user_guess_letter
-    
-
 def main():
     """
      * Game execution start here
@@ -311,7 +306,6 @@ def main():
             print(colored("\n Invalid input. Please enter valid options"
                   "like 1, 2, 3 and 4", 'red'))
             continue
-       
         if user_choice == 1:
             clear()
             print("\n\n")
@@ -334,13 +328,13 @@ def main():
             clear()
             print(colored("Your leaving the game. See you soon"
                           "...\n", 'white', attrs=['bold']))
-            # Exit the game              
+            # Exit the game
             exit()
         else:
             clear()
             print(colored("\n Invalid input. Please enter valid options"
                           "like 1, 2, 3 and 4", 'red'))
-            # If user enter option greater than 4 , show the error and 
+            # If user enter option greater than 4 , show the error and
             # ask to enter again
             continue
 
