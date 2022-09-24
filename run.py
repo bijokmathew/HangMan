@@ -147,7 +147,7 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
+        #print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
         print(colored("-"*80, 'cyan'))
         print(colored("\n Name should contain only letters and should not have any special characters", 'magenta'))
         print(colored(" Example:  Deric \n", 'magenta'))
@@ -160,6 +160,7 @@ def run_game():
                 """ \n\n Hmmm....this doesn't seem right \U0001F914 """
                 """ Please make sure to enter a valid name!""", 'cyan'
             ))
+            continue
         if validate_name(player_name):
             break
         else:
@@ -245,7 +246,12 @@ def run_game():
             main()
             
         # Ask user to guess the letter
-        user_guess_letter = input(colored("Guess a letter here : \n", 'blue', attrs=['bold']))
+        try:
+            user_guess_letter = input(colored("Guess a letter here : \n", 'blue', attrs=['bold']))
+        except BaseException:
+            clear()
+            print(colored("\n Please enter valid character \n", 'red'))
+            continue
         # check whether the guess letter is previosly gusses
         if user_guess_letter in user_guessed_letters:
             clear()
@@ -315,13 +321,7 @@ def main():
             print(colored("\n Invalid input. Please enter valid options"
                   "like 1, 2, 3 and 4", 'red'))
             continue
-        # validate the user choice and it should contain only number
-        if not user_choice.isdecimal():
-            clear()
-            print(colored("\n Invalid input. Please enter valid options"
-                  "like 1, 2, 3 and 4", 'red'))
-            continue
-        
+       
         if user_choice == 1:
             clear()
             print("\n\n")
