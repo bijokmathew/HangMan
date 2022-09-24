@@ -33,14 +33,14 @@ def display_top_5_score():
     # Get all saved players and their score from the sheet
     total_list_players_from_sheet = scores_sheet.get_all_values()
     # Display players name and their score in table format
-    print("\n\n Top five scorers are ...")
-    print("________________________________________________________________")
-    print('{:43s} {:20s} '.format("Name", "Number of life used"))
-    print("________________________________________________________________\n")
+    print(colored("\n\n Top five scorers are ...", 'yellow', attrs=['bold']))
+    print(colored("________________________________________________________________", 'white', attrs=['bold']))
+    print('{:43s} {:20s} '.format(colored("Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
+    print(colored("________________________________________________________________", 'white', attrs=['bold']))
     
     for player in total_list_players_from_sheet:
-        print('{:47s} {:20s}  '.format(player[0], player[1]))
-    print("________________________________________________________________")    
+        print('{:47s} {:20s}  '.format(colored(player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
+    print(colored("________________________________________________________________\n", 'white', attrs=['bold']))    
 
 
 def update_current_score_in_toplist(number_of_life_used, player_name):
@@ -52,47 +52,44 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
       add the current score to the score sheet 
     """
     # Bydefault the total number of entry in the score sheet is 5
-    total_no_of_entry_scoresheet = 5 
+    total_no_of_entry_scoresheet = 5
     # Get all saved players and their score from the sheet
     total_list_players_from_sheet = scores_sheet.get_all_values()
+    # Current no of entries in the sheet
     curent_no_of_entry_scoresheet = len(total_list_players_from_sheet)
-    print("curent_no_of_entry_scoresheet = ", curent_no_of_entry_scoresheet)
-    print("before  total_list_players_from_sheet == ", total_list_players_from_sheet)
-    # skip the first row as it is a titles
-    #  total_list_players_from_sheet = total_list_players_from_sheet[1:]
-    print("hhh total_list_players_from_sheet == ", total_list_players_from_sheet[1][1])
     index = 0
     
     for index in range(curent_no_of_entry_scoresheet):
         isPresent = False
-        print("index",index)
+        # if the current score is less than in the list, then update the current
+        # score in the sheet 
         if number_of_life_used <= int(total_list_players_from_sheet[index][1]):
             isPresent = True
-            print(index)
             scores_sheet.delete_row(index+1)
             scores_sheet.insert_row([player_name, number_of_life_used], index+1)
-            print(f"You score are updated in {index+1} out of 5 ") 
+            print(colored("You score are updated in ", 'green', attrs=['bold']),
+                  colored("f{index+1}", 'white', attrs=['bold']),
+                  colored("out of 5 ", 'green', attrs=['bold']))
             break
         else:
             continue
     index += 1
+    # if the current no of entries in the sheet is less than 5
+    # then append the current score to the sheet 
     if index < total_no_of_entry_scoresheet and isPresent == False:
-        print("index and total_no_of_entry_scoresheet ", index,  total_no_of_entry_scoresheet)
         scores_sheet.append_row([player_name, number_of_life_used])
-        print(f"You score are updated in {index+1} out of 5 ")
-
+        print(colored("You score are updated in ", 'green', attrs=['bold']),
+              colored("f{index+1}", 'white', attrs=['bold']),
+              colored("out of 5 ", 'green', attrs=['bold']))
+    # If the current score is not in top 5 list then show the below message
     elif isPresent == False:
         print(colored("Your score is not in the first five top list.\
                         Please try again,'cyan',attrs=['bold']"))
 
-def add_to_score_sheet(name, number_of_life_used):
-    #get_given_player_score_from_score_sheet(name)
-    update_current_score_in_toplist(number_of_life_used, name)
-
 
 def clear():
     """
-    Clear the screen by using system call
+    Clear the screen by using system call based on the os
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -142,7 +139,7 @@ def run_game():
     while True:
         print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
         print(colored("-"*80, 'cyan'))
-        print(colored("\n Name should contain only letters and should not have any special characters",'magenta'))
+        print(colored("\n Name should contain only letters and should not have any special characters", 'magenta'))
         print(colored(" Example:  Deric \n", 'magenta'))
         print(colored("-"*80, 'cyan'))
 
@@ -151,10 +148,10 @@ def run_game():
             break
         else:
             clear()
-            print(
+            print(colored(
                 """ \n\n Hmmm....this doesn't seem right \U0001F914 """
-                """ Please make sure to enter a valid name!"""
-            )
+                """ Please make sure to enter a valid name!""", 'cyan'
+            ))
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
     print(actual_word)
@@ -165,7 +162,7 @@ def run_game():
     # store user guess letter
     user_guess_letter = ""
     # if guess is correct then add the letter to user_guessed_word
-    user_guessed_word=""
+    user_guessed_word = ""
     # this variable used to check whtether screen to clear or not
     is_error = False
     # repeat the user guess until the number of life become 0 
@@ -187,13 +184,14 @@ def run_game():
         if (display_guss_letter == actual_word):
             clear()
             number_of_life_used = len(actual_word) - number_of_life
-            add_to_score_sheet(player_name, number_of_life_used)
+            # add the current score in to the sheet
+            update_current_score_in_toplist(number_of_life_used, player_name)
             print(colored("\n Congratz You Won : You gussed the word",
                   'green', attrs=['bold']), actual_word, colored(" using",
                   'green', attrs=['bold']),  number_of_life_used,
                   colored(" lifes", 'green', attrs=['bold']))
             # Ask user to continue or exit the game   
-            input(colored("\n Please eneter", 'blue', attrs=['bold']),
+            input(colored("\n Please enter", 'blue', attrs=['bold']),
                   "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
             main()
@@ -213,7 +211,7 @@ def run_game():
                   'red', attrs=['bold']), actual_word)
             print(draw_hangman(number_of_life))
             # Ask user to continue or exit the game
-            input(colored("\n Please eneter", 'blue', attrs=['bold']),
+            input(colored("\n Please enter", 'blue', attrs=['bold']),
                   "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
             main()
