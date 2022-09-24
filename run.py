@@ -85,13 +85,13 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
     index += 1
     # if the current no of entries in the sheet is less than 5
     # then append the current score to the sheet
-    if index < total_no_of_entry_scoresheet and isPresent == False:
+    if index < total_no_of_entry_scoresheet and isPresent is False:
         scores_sheet.append_row([player_name, number_of_life_used])
         print(colored("You score are updated in ", 'green', attrs=['bold']),
               colored("f{index+1}", 'white', attrs=['bold']),
               colored("out of 5 ", 'green', attrs=['bold']))
     # If the current score is not in top 5 list then show the below message
-    elif isPresent == False:
+    elif isPresent is False:
         print(colored("Your score is not in the first five top list.\
                         Please try again,'cyan',attrs=['bold']"))
 
@@ -146,7 +146,7 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        #print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
+        # print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
         print(colored("-"*80, 'cyan'))
         print(colored("\n Name should contain only letters and should not have any special characters", 'magenta'))
         print(colored(" Example:  Deric \n", 'magenta'))
@@ -213,16 +213,16 @@ def run_game():
 
         # Display the number of life left, actual word and all guessed letters
         print("\n\n")
-        print(10* " ", colored(50* '#', 'yellow', attrs=['bold']), "\n")
-        print(20* " ", colored("Number of life left  :", 'magenta', attrs=['bold']),    colored(f"{number_of_life}", 'white', attrs=['bold']))
-        print(20* " ", colored("Gussed letter        :", 'magenta', attrs=['bold']),    colored(f"{user_guessed_letters}", 'white', attrs=['bold']))
-        print(20* " ", colored("Actual word          :", 'magenta', attrs=['bold']),    colored(f"{display_guss_letter}", 'white', attrs=['bold']), "\n")
-        print(10* " ", colored(50* '#', 'yellow', attrs=['bold']))
+        print(10 * " ", colored(50 * '#', 'yellow', attrs=['bold']), "\n")
+        print(20 * " ", colored("Number of life left  :", 'magenta', attrs=['bold']),    colored(f"{number_of_life}", 'white', attrs=['bold']))
+        print(20 * " ", colored("Gussed letter        :", 'magenta', attrs=['bold']),    colored(f"{user_guessed_letters}", 'white', attrs=['bold']))
+        print(20 * " ", colored("Actual word          :", 'magenta', attrs=['bold']),    colored(f"{display_guss_letter}", 'white', attrs=['bold']), "\n")
+        print(10 * " ", colored(50 * '#', 'yellow', attrs=['bold']))
         print("\n\n")
         # number of life =0 means user lose the game
         if number_of_life == 0:
             clear()
-            print("\n", 6* ' ', colored("Sorry you failed to guess the word:",
+            print("\n", 6 * ' ', colored("Sorry you failed to guess the word:",
                   'red', attrs=['bold']), actual_word)
             print(draw_hangman(number_of_life))
             # Ask user to continue or exit the game
@@ -257,8 +257,6 @@ def run_game():
             clear()
             print(colored("\n Please enter valid character \n", 'red'))
             continue
-
-        # user_guess_letter = input("Guess a letter here : ")
         # if guessed letter not present in present in actual word then
         # decrement the number of life and draw hangman
         if user_guess_letter not in actual_word:
@@ -269,10 +267,12 @@ def run_game():
             number_of_life -= 1
         else:
             clear()
-            print(20* ' ',
+            print(20 * ' ',
                   colored("\n Your guess is correct !!! letter ", 'green'),
                   user_guess_letter, colored(" found in the word \n", 'green'))
             user_guessed_word += user_guess_letter
+
+
 def main():
     """
      * Game execution start here
