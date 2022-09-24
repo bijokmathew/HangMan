@@ -24,17 +24,23 @@ SHEET = GSPREAD_CLIENT.open("hangman-game-score")
 scores_sheet = SHEET.worksheet("higher-score")
 
 
-def get_top_5_score():
+def display_top_5_score():
     """
-    Get name and number-of life used of top 5 from the
-    hangman-game-score sheet and return the same to
-    the caller
+    * This function get all datas ie 5 list from the
+      score sheet
+    * Display name and their scores in proper manner   
     """
     # Get all saved players and their score from the sheet
     total_list_players_from_sheet = scores_sheet.get_all_values()
-    print("total_list_players_from_sheet =", total_list_players_from_sheet)
-    # return top 5 player list
-    return total_list_players_from_sheet[:5]
+    # Display players name and their score in table format
+    print("\n\n Top five scorers are ...")
+    print("________________________________________________________________")
+    print('{:43s} {:20s} '.format("Name", "Number of life used"))
+    print("________________________________________________________________\n")
+    
+    for player in total_list_players_from_sheet:
+        print('{:47s} {:20s}  '.format(player[0], player[1]))
+    print("________________________________________________________________")    
 
 
 def update_current_score_in_toplist(number_of_life_used, player_name):
@@ -76,8 +82,8 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
         print(f"You score are updated in {index+1} out of 5 ")
 
     elif isPresent == False:
-        print("Your score is not in the first five top list.\
-                        Please try again ")
+        print(colored("Your score is not in the first five top list.\
+                        Please try again,'cyan',attrs=['bold']"))
 
 def add_to_score_sheet(name, number_of_life_used):
     #get_given_player_score_from_score_sheet(name)
@@ -108,6 +114,11 @@ def validate_name(name):
 
 
 def draw_hangman(number_of_life):
+    """
+    * This function return the hunmans based on the
+      number of life.
+    * Hangmans are already defined in hangman.py  
+    """
     return hangman_images[number_of_life]
 
 
@@ -129,13 +140,13 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        print("\n Please enter your name\n")
-        print("-"*80)
-        print("\n Name should contain only letters and should not have any special characters")
-        print(" Example:  Deric \n")
-        print("-"*80)
+        print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
+        print(colored("-"*80, 'cyan'))
+        print(colored("\n Name should contain only letters and should not have any special characters",'magenta'))
+        print(colored(" Example:  Deric \n",'magenta'))
+        print(colored("-"*80, 'cyan'))
 
-        player_name = input("\n\nEnter your name here:  \n")
+        player_name = input(colored("\n\n Enter your name here:  \n", 'blue',attrs=['bold']))
         if validate_name(player_name):
             break
         else:
@@ -243,53 +254,65 @@ def main():
     clear()
     while True:
         print("\n\n")
-        print("+++++ Welcome to HangMan Game +++++ ")
+        print(colored("+++++", 'blue'), colored(" Welcome to HangMan Game", 'yellow'), colored("+++++ ", 'blue'))
         print("\n\n")
 
-        print("   1.   Play Game   ")
-        print("   2.   Help   ")
-        print("   3.   High Scores  ")
-        print("   4.   Exit Game  ")
+        print(colored("   1.   Play Game   ", 'magenta', attrs=['bold']))
+        print(colored("   2.   Help   ", 'magenta', attrs=['bold']))
+        print(colored("   3.   High Scores  ", 'magenta', attrs=['bold']))
+        print(colored("   4.   Exit Game  ", 'magenta', attrs=['bold']))
 
         print("\n\n")
-        print("+++++  ++++ +++++ +++++ +++++  +++++ ")
+        print(colored("+++++  ++++ +++++ +++++ +++++  +++++ ", 'blue'))
         print("\n\n")
-        print(" Please enter valid options like 1, 2, 3 and 4 \n")
-        # get user input 
-        user_choice = (input(" Enter your choice here : \n"))
+        print(colored(" Please enter valid options like 1, 2, 3 "
+                      "and 4 \n", 'cyan'))
+        # get user input
+        user_choice = (input(colored(" Enter your choice here "
+                       ": \n", 'blue', attrs=['bold'])))
         # validate the user choice and it should contain only number
         if not user_choice.isdecimal():
             clear()
-            print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
+            print(colored("\n Invalid input. Please enter valid options"
+                  "like 1, 2, 3 and 4", 'red'))
             continue
         else:
             try:
                 user_choice = int(user_choice)
             except ValueError():
                 clear()
-                print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
+                print(colored("\n Invalid input. Please enter valid options"
+                              "like 1, 2, 3 and 4", 'red'))
                 continue
         if user_choice == 1:
+            clear()
             print("\n\n")
-            print("Your game started .... \n")
+            print(colored("Your game started .... \n", 'green'))
             # start the game
             run_game()
             break
         elif user_choice == 2:
+            clear()
             # Game rules and hints to play
             get_game_help()
             break
         elif user_choice == 3:
+            clear()
             # display top 5 scores from the google sheet
-            get_top_5_score()
+            display_top_5_score()
             break
         elif user_choice == 4:
             clear()
-            print("Your leaving the game. See you soon..")
+            print(colored("Your leaving the game. See you soon"
+                          "...\n", 'white', attrs=['bold']))
+            # Exit the game              
             exit()
         else:
             clear()
-            print("\n Invalid input. Please enter valid options like 1, 2, 3 and 4")
+            print(colored("\n Invalid input. Please enter valid options"
+                          "like 1, 2, 3 and 4", 'red'))
+            # If user enter option greater than 4 , show the error and 
+            # ask to enter again
             continue
 
 
