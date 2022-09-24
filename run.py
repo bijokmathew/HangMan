@@ -143,10 +143,10 @@ def run_game():
         print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
         print(colored("-"*80, 'cyan'))
         print(colored("\n Name should contain only letters and should not have any special characters",'magenta'))
-        print(colored(" Example:  Deric \n",'magenta'))
+        print(colored(" Example:  Deric \n", 'magenta'))
         print(colored("-"*80, 'cyan'))
 
-        player_name = input(colored("\n\n Enter your name here:  \n", 'blue',attrs=['bold']))
+        player_name = input(colored("\n\n Enter your name here:  \n", 'blue', attrs=['bold']))
         if validate_name(player_name):
             break
         else:
@@ -188,34 +188,44 @@ def run_game():
             clear()
             number_of_life_used = len(actual_word) - number_of_life
             add_to_score_sheet(player_name, number_of_life_used)
-            print(f"\n Congratz You Won : You gussed the word {actual_word} using {number_of_life_used} lifes")
-            # Add player name and score to score sheet   
-            input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
+            print(colored("\n Congratz You Won : You gussed the word",
+                  'green', attrs=['bold']), actual_word, colored(" using",
+                  'green', attrs=['bold']),  number_of_life_used,
+                  colored(" lifes", 'green', attrs=['bold']))
+            # Ask user to continue or exit the game   
+            input(colored("\n Please eneter", 'blue', attrs=['bold']),
+                  "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
+                  colored("to return to main menu...\n", 'blue', attrs=['bold']))
             main()
 
         # Display the number of life left, actual word and all guessed letters
         print("\n\n")
-        print(10* " ", 50* '#',"\n")
-        print(20* " ", f"Number of life left :     {number_of_life}", 20* " ")
-        print(20* " ", f"Gussed letter        :     {user_guessed_letters}", 20* " ")
-        print(20* " ", f"Actual word          :     {display_guss_letter}", 20* " ","\n")
-        print(10* " ", 50* '#', 10*" ")
+        print(10* " ", colored(50* '#', 'yellow', attrs=['bold']), "\n")
+        print(20* " ", colored("Number of life left  :", 'magenta', attrs=['bold']),    colored(f"{number_of_life}", 'white', attrs=['bold']))
+        print(20* " ", colored("Gussed letter        :", 'magenta', attrs=['bold']),    colored(f"{user_guessed_letters}", 'white', attrs=['bold']))
+        print(20* " ", colored("Actual word          :", 'magenta', attrs=['bold']),    colored(f"{display_guss_letter}", 'white', attrs=['bold']), "\n")
+        print(10* " ", colored(50* '#', 'yellow', attrs=['bold']))
         print("\n\n")
         # number of life =0 means user lose the game
         if number_of_life == 0:
             clear()
-            print("\n", 6* ' ', f"Sorry you failed to guess the word: {actual_word} ")
+            print("\n", 6* ' ', colored("Sorry you failed to guess the word:",
+                  'red', attrs=['bold']), actual_word)
             print(draw_hangman(number_of_life))
-            input("\n Please eneter any letter or 'Enter' to return to main menu...\n")
+            # Ask user to continue or exit the game
+            input(colored("\n Please eneter", 'blue', attrs=['bold']),
+                  "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
+                  colored("to return to main menu...\n", 'blue', attrs=['bold']))
             main()
             
         # Ask user to guess the letter
-        user_guess_letter = input("Guess a letter here : \n")
+        user_guess_letter = input(colored("Guess a letter here : \n", 'blue', attrs=['bold']))
         # check whether the guess letter is previosly gusses
         if user_guess_letter in user_guessed_letters:
             clear()
-            print(f"\n You already guessed the letter: {user_guess_letter}")
-            print("\n Please guess another letter")
+            print(colored("\n You already guessed the letter:", 'cyan'),
+                  user_guess_letter)
+            print(colored("\n Please guess another letter", 'cyan'))
             is_error = True
             continue
         # validate the user guessed letter
@@ -223,7 +233,7 @@ def run_game():
             user_guessed_letters += user_guess_letter
         else:
             clear()
-            print("\n Please enter valid character \n")
+            print(colored("\n Please enter valid character \n", 'red'))
             is_error = True
             continue
 
@@ -233,12 +243,15 @@ def run_game():
         if user_guess_letter not in actual_word:
             clear()
             print(draw_hangman(number_of_life))
-            print("\n\n Oho sorry!!  wrong guess, Please try again..")
+            print(colored("\n\n Oho sorry!!  wrong guess,"
+                          "Please try again..", 'red'))
             number_of_life -= 1
             is_error = True
         else:
             clear()
-            print(20* ' ', f"\n Your guess is correct !!!  {user_guess_letter} found \n")
+            print(20* ' ',
+                  colored("\n Your guess is correct !!! letter ", 'green'),
+                  user_guess_letter, colored(" found in the word \n", 'green'))
             user_guessed_word += user_guess_letter
             is_error = True
     
