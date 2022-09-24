@@ -34,12 +34,17 @@ def display_top_5_score():
     total_list_players_from_sheet = scores_sheet.get_all_values()
     # Display players name and their score in table format
     print(colored("\n\n Top five scorers are ...", 'yellow', attrs=['bold']))
-    print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
-    print('{:43s} {:20s} '.format(colored("  Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
-    print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
+    print(colored("__________________________________________________________"
+                  "______", 'white', attrs=['bold']), "\n")
+    print('{:43s} {:20s} '.format(colored("  Name", 'blue', attrs=['bold']),
+          colored("Number of life used", 'blue', attrs=['bold'])))
+    print(colored("__________________________________________________________"
+          "______", 'white', attrs=['bold']), "\n")
     for player in total_list_players_from_sheet:
-        print('{:47s} {:20s}  '.format(colored("  "+player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
-    print(colored("________________________________________________________________\n", 'white', attrs=['bold']))
+        print('{:47s} {:20s}  '.format(colored("  "+player[0], 'magenta',
+              attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
+    print(colored("___________________________________________________________"
+          "_____\n", 'white', attrs=['bold']))
     print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
           colored("any letter", 'white', attrs=['bold']),
           colored("or", 'blue', attrs=['bold']),
@@ -69,16 +74,18 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
     index = 0
     for index in range(curent_no_of_entry_scoresheet):
         isPresent = False
-        # if the current score is less than in the list, then update the current
+        # if the current score is less than in the list,then update the current
         # score in the sheet
         if number_of_life_used <= int(total_list_players_from_sheet[index][1]):
             isPresent = True
             scores_sheet.delete_rows(index+1)
-            scores_sheet.insert_row([player_name, number_of_life_used], index+1)
-            print(colored(" You score are updated in ", 'green', attrs=['bold']),
-                  colored(f"{index+1}", 'white', attrs=['bold']),
-                  colored("out of ", 'green', attrs=['bold']),
-                  colored("5", 'white', attrs=['bold']))
+            scores_sheet.insert_row([player_name, number_of_life_used],
+                                    index+1)
+            print(colored("\n You score are saved in ", 'green',
+                  attrs=['bold']), colored(f"{index+1}", 'white',
+                  attrs=['bold']), colored("rd place out of ", 'green',
+                  attrs=['bold']), colored("5", 'white',
+                  attrs=['bold']))
             break
         else:
             continue
@@ -87,9 +94,10 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
     # then append the current score to the sheet
     if index < total_no_of_entry_scoresheet and isPresent is False:
         scores_sheet.append_row([player_name, number_of_life_used])
-        print(colored("You score are updated in ", 'green', attrs=['bold']),
-              colored("f{index+1}", 'white', attrs=['bold']),
-              colored("out of 5 ", 'green', attrs=['bold']))
+        print(colored("\n You score are saved in ", 'green',
+              attrs=['bold']), colored(f"{index+1}", 'white',
+              attrs=['bold']), colored("rd place out of ", 'green',
+              attrs=['bold']), colored("5", 'white', attrs=['bold']))
     # If the current score is not in top 5 list then show the below message
     elif isPresent is False:
         print(colored("Your score is not in the first five top list.\
@@ -146,13 +154,14 @@ def run_game():
     """
     # get the player name and validate name againts the rules
     while True:
-        # print(colored("\nPlease enter your name\n", 'blue', attrs=['bold']))
         print(colored("-"*80, 'cyan'))
-        print(colored("\n Name should contain only letters and should not have any special characters", 'magenta'))
+        print(colored("\n Name should contain only letters and should not have"
+                      "any special characters", 'magenta'))
         print(colored(" Example:  Deric \n", 'magenta'))
         print(colored("-"*80, 'cyan'))
         try:
-            player_name = input(colored("\n\n Enter your name here:  \n", 'blue', attrs=['bold']))
+            player_name = input(colored("\n\n Enter your name here:  \n",
+                                'blue', attrs=['bold']))
         except BaseException:
             clear()
             print(colored(
@@ -171,9 +180,9 @@ def run_game():
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
     print(actual_word)
-    # define the number of life and it is equal to the length of the actual word
+    # define the number of life and assign to the length of the actual word
     number_of_life = len(actual_word)
-    # store all the user gussed letters for validating user repeating the same letter
+    # store all the user gussed letters to check user repeat the same letter
     user_guessed_letters = ""
     # store user guess letter
     user_guess_letter = ""
@@ -185,7 +194,8 @@ def run_game():
         # display_guss_letter = ""
         # if user guessed letter present in actual word then add guessed
         # letter else add "_" to the display word
-        display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
+        display_guss_letter = [letter if letter in user_guessed_letters else
+                               "_" for letter in actual_word]
         display_guss_letter = ''.join(display_guss_letter)
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
@@ -196,15 +206,16 @@ def run_game():
                   'white', attrs=['bold']), colored(" using",
                   'green', attrs=['bold']), colored(f"{number_of_life_used}",
                   'white', attrs=['bold']),
-                  colored(" lifes", 'green', attrs=['bold']))
+                  colored("lifes", 'green', attrs=['bold']))
             # add the current score in to the sheet
             update_current_score_in_toplist(number_of_life_used, player_name)
             # Ask user to continue or exit the game
-            print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-                  colored("any letter", 'white', attrs=['bold']),
-                  colored("or", 'blue', attrs=['bold']),
-                  colored(" Enter", 'white', attrs=['bold']),
-                  colored("to return to main menu...\n", 'blue', attrs=['bold']))
+            print(" " * 24 + colored("\n Please enter", 'blue',
+                  attrs=['bold']), colored("any letter", 'white',
+                  attrs=['bold']), colored("or", 'blue',
+                  attrs=['bold']), colored(" Enter", 'white',
+                  attrs=['bold']), colored("to return to main menu...\n",
+                  'blue', attrs=['bold']))
             try:
                 input("\n ")
             except BaseException:
@@ -214,9 +225,15 @@ def run_game():
         # Display the number of life left, actual word and all guessed letters
         print("\n\n")
         print(10 * " ", colored(50 * '#', 'yellow', attrs=['bold']), "\n")
-        print(20 * " ", colored("Number of life left  :", 'magenta', attrs=['bold']),    colored(f"{number_of_life}", 'white', attrs=['bold']))
-        print(20 * " ", colored("Gussed letter        :", 'magenta', attrs=['bold']),    colored(f"{user_guessed_letters}", 'white', attrs=['bold']))
-        print(20 * " ", colored("Actual word          :", 'magenta', attrs=['bold']),    colored(f"{display_guss_letter}", 'white', attrs=['bold']), "\n")
+        print(20 * " ", colored("Number of life left  :", 'magenta',
+              attrs=['bold']),    colored(f"{number_of_life}", 'white',
+              attrs=['bold']))
+        print(20 * " ", colored("Gussed letter        :", 'magenta',
+              attrs=['bold']),    colored(f"{user_guessed_letters}",
+              'white', attrs=['bold']))
+        print(20 * " ", colored("Actual word          :", 'magenta',
+              attrs=['bold']),    colored(f"{display_guss_letter}",
+              'white', attrs=['bold']), "\n")
         print(10 * " ", colored(50 * '#', 'yellow', attrs=['bold']))
         print("\n\n")
         # number of life =0 means user lose the game
@@ -226,11 +243,12 @@ def run_game():
                   'red', attrs=['bold']), actual_word)
             print(draw_hangman(number_of_life))
             # Ask user to continue or exit the game
-            print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-                  colored("any letter", 'white', attrs=['bold']),
-                  colored("or", 'blue', attrs=['bold']),
-                  colored(" Enter", 'white', attrs=['bold']),
-                  colored("to return to main menu...\n", 'blue', attrs=['bold']))
+            print(" " * 24 + colored("\n Please enter", 'blue',
+                  attrs=['bold']), colored("any letter", 'white',
+                  attrs=['bold']), colored("or", 'blue',
+                  attrs=['bold']), colored(" Enter", 'white',
+                  attrs=['bold']), colored("to return to main menu...\n",
+                  'blue', attrs=['bold']))
             try:
                 input("\n ")
             except BaseException:
@@ -238,7 +256,8 @@ def run_game():
             main()
         # Ask user to guess the letter
         try:
-            user_guess_letter = input(colored("Guess a letter here : \n", 'blue', attrs=['bold']))
+            user_guess_letter = input(colored("Guess a letter here : \n",
+                                      'blue', attrs=['bold']))
         except BaseException:
             clear()
             print(colored("\n Please enter valid character \n", 'red'))
@@ -284,7 +303,8 @@ def main():
     clear()
     while True:
         print("\n\n")
-        print(colored("+++++", 'blue'), colored(" Welcome to HangMan Game", 'yellow'), colored("+++++ ", 'blue'))
+        print(colored("+++++", 'blue'), colored(" Welcome to HangMan Game",
+              'yellow'), colored("+++++ ", 'blue'))
         print("\n\n")
 
         print(colored("   1.   Play Game   ", 'magenta', attrs=['bold']))
