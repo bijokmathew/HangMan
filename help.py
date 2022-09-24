@@ -3,10 +3,10 @@ from termcolor import colored
 
 def get_game_help():
     """
-    * Define the how to play the game 
+    * Define the how to play the game
     * Explain details of the game like invalid entry, error cases
     """
-    print(colored("-" * 120,'blue'))
+    print(colored("-" * 120, 'blue'))
     print('\n')
     print(colored(" " * 30 + "How to play the GAME", 'yellow'))
     rule_list = (
@@ -54,8 +54,8 @@ def get_game_help():
     print('\n')
 
     print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-          colored("any letter", 'white', attrs=['bold']), 
-          colored("or", 'blue', attrs=['bold']), 
+          colored("any letter", 'white', attrs=['bold']),
+          colored("or", 'blue', attrs=['bold']),
           colored(" Enter", 'white', attrs=['bold']),
           colored("to return to main menu...\n", 'blue', attrs=['bold']))
     input("\n ")
