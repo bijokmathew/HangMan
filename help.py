@@ -52,6 +52,10 @@ def get_game_help():
 
     print("\n\n", colored("-" * 120, 'blue'))
     print('\n')
-    input(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
-          "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
+
+    print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
+          colored("any letter", 'white', attrs=['bold']), 
+          colored("or", 'blue', attrs=['bold']), 
+          colored(" Enter", 'white', attrs=['bold']),
           colored("to return to main menu...\n", 'blue', attrs=['bold']))
+    input("\n ")

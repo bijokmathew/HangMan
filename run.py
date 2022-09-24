@@ -40,7 +40,14 @@ def display_top_5_score():
     
     for player in total_list_players_from_sheet:
         print('{:47s} {:20s}  '.format(colored(player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
-    print(colored("________________________________________________________________\n", 'white', attrs=['bold']))    
+    print(colored("________________________________________________________________\n", 'white', attrs=['bold']))
+    print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
+          colored("any letter", 'white', attrs=['bold']), 
+          colored("or", 'blue', attrs=['bold']), 
+          colored(" Enter", 'white', attrs=['bold']),
+          colored("to return to main menu...\n", 'blue', attrs=['bold']))
+    input("\n ")
+    main()   
 
 
 def update_current_score_in_toplist(number_of_life_used, player_name):
@@ -178,7 +185,7 @@ def run_game():
         # letter else add "_" to the display word
         display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
         display_guss_letter = ''.join(display_guss_letter)
-        print(display_guss_letter)
+        #print(display_guss_letter)
         print(actual_word)
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
@@ -190,10 +197,13 @@ def run_game():
                   'green', attrs=['bold']), actual_word, colored(" using",
                   'green', attrs=['bold']),  number_of_life_used,
                   colored(" lifes", 'green', attrs=['bold']))
-            # Ask user to continue or exit the game   
-            input(colored("\n Please enter", 'blue', attrs=['bold']),
-                  "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
+            # Ask user to continue or exit the game
+            print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
+                  colored("any letter", 'white', attrs=['bold']), 
+                  colored("or", 'blue', attrs=['bold']), 
+                  colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
+            input("\n ")
             main()
 
         # Display the number of life left, actual word and all guessed letters
@@ -211,9 +221,12 @@ def run_game():
                   'red', attrs=['bold']), actual_word)
             print(draw_hangman(number_of_life))
             # Ask user to continue or exit the game
-            input(colored("\n Please enter", 'blue', attrs=['bold']),
-                  "any letter", colored("or", 'blue', attrs=['bold']), " Enter",
+            print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
+                  colored("any letter", 'white', attrs=['bold']), 
+                  colored("or", 'blue', attrs=['bold']), 
+                  colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
+            input("\n ")            
             main()
             
         # Ask user to guess the letter
@@ -241,7 +254,7 @@ def run_game():
         if user_guess_letter not in actual_word:
             clear()
             print(draw_hangman(number_of_life))
-            print(colored("\n\n Oho sorry!!  wrong guess,"
+            print(colored(" Oho sorry!!  wrong guess,"
                           "Please try again..", 'red'))
             number_of_life -= 1
             is_error = True
@@ -306,6 +319,7 @@ def main():
             clear()
             # Game rules and hints to play
             get_game_help()
+            main()
             break
         elif user_choice == 3:
             clear()
