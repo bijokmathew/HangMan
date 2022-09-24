@@ -75,11 +75,12 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
         # score in the sheet 
         if number_of_life_used <= int(total_list_players_from_sheet[index][1]):
             isPresent = True
-            scores_sheet.delete_row(index+1)
+            scores_sheet.delete_rows(index+1)
             scores_sheet.insert_row([player_name, number_of_life_used], index+1)
-            print(colored("You score are updated in ", 'green', attrs=['bold']),
-                  colored("f{index+1}", 'white', attrs=['bold']),
-                  colored("out of 5 ", 'green', attrs=['bold']))
+            print(colored(" You score are updated in ", 'green', attrs=['bold']),
+                  colored(f"{index+1}", 'white', attrs=['bold']),
+                  colored("out of ", 'green', attrs=['bold']),
+                  colored("5", 'white', attrs=['bold']))
             break
         else:
             continue
@@ -180,33 +181,26 @@ def run_game():
     user_guess_letter = ""
     # if guess is correct then add the letter to user_guessed_word
     user_guessed_word = ""
-    # this variable used to check whtether screen to clear or not
-    is_error = False
     # repeat the user guess until the number of life become 0 
     while (number_of_life >= 0):
-        # In case of error no need to clear the screen
-        if not is_error:
-            print(0)
-            #clear()
-        is_error = False
         # To display gussed letter in the original word like _ _ X _ _
         # display_guss_letter = ""
         # if user guessed letter present in actual word then add guessed 
         # letter else add "_" to the display word
         display_guss_letter = [letter if letter in user_guessed_letters else "_" for letter in actual_word]
         display_guss_letter = ''.join(display_guss_letter)
-        #print(display_guss_letter)
-        print(actual_word)
         # check the user guessed all letters in the actual word
         if (display_guss_letter == actual_word):
             clear()
             number_of_life_used = len(actual_word) - number_of_life
+            print(colored("\n Congratz You Won : You gussed the word",
+                  'green', attrs=['bold']), colored(f"{actual_word}", 
+                  'white', attrs=['bold']), colored(" using",
+                  'green', attrs=['bold']), colored(f"{number_of_life_used}", 
+                  'white', attrs=['bold']),
+                  colored(" lifes", 'green', attrs=['bold']))
             # add the current score in to the sheet
             update_current_score_in_toplist(number_of_life_used, player_name)
-            print(colored("\n Congratz You Won : You gussed the word",
-                  'green', attrs=['bold']), actual_word, colored(" using",
-                  'green', attrs=['bold']),  number_of_life_used,
-                  colored(" lifes", 'green', attrs=['bold']))
             # Ask user to continue or exit the game
             print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
                   colored("any letter", 'white', attrs=['bold']), 
@@ -258,7 +252,6 @@ def run_game():
             print(colored("\n You already guessed the letter:", 'cyan'),
                   user_guess_letter)
             print(colored("\n Please guess another letter", 'cyan'))
-            is_error = True
             continue
         # validate the user guessed letter
         if (user_guess_letter in ascii_letters):
@@ -266,7 +259,6 @@ def run_game():
         else:
             clear()
             print(colored("\n Please enter valid character \n", 'red'))
-            is_error = True
             continue
 
         # user_guess_letter = input("Guess a letter here : ")
@@ -278,14 +270,12 @@ def run_game():
             print(colored(" Oho sorry!!  wrong guess,"
                           "Please try again..", 'red'))
             number_of_life -= 1
-            is_error = True
         else:
             clear()
             print(20* ' ',
                   colored("\n Your guess is correct !!! letter ", 'green'),
                   user_guess_letter, colored(" found in the word \n", 'green'))
             user_guessed_word += user_guess_letter
-            is_error = True
     
 
 def main():
