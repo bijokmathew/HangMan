@@ -35,18 +35,21 @@ def display_top_5_score():
     # Display players name and their score in table format
     print(colored("\n\n Top five scorers are ...", 'yellow', attrs=['bold']))
     print(colored("________________________________________________________________", 'white', attrs=['bold']))
-    print('{:43s} {:20s} '.format(colored("Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
+    print('{:43s} {:20s} '.format(colored("  Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
     print(colored("________________________________________________________________", 'white', attrs=['bold']))
     
     for player in total_list_players_from_sheet:
-        print('{:47s} {:20s}  '.format(colored(player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
+        print('{:47s} {:20s}  '.format(colored("  "+player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))
     print(colored("________________________________________________________________\n", 'white', attrs=['bold']))
     print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),
           colored("any letter", 'white', attrs=['bold']), 
           colored("or", 'blue', attrs=['bold']), 
           colored(" Enter", 'white', attrs=['bold']),
           colored("to return to main menu...\n", 'blue', attrs=['bold']))
-    input("\n ")
+    try:      
+        input("\n ")
+    except BaseException:
+        pass
     main()   
 
 
@@ -149,8 +152,14 @@ def run_game():
         print(colored("\n Name should contain only letters and should not have any special characters", 'magenta'))
         print(colored(" Example:  Deric \n", 'magenta'))
         print(colored("-"*80, 'cyan'))
-
-        player_name = input(colored("\n\n Enter your name here:  \n", 'blue', attrs=['bold']))
+        try:
+            player_name = input(colored("\n\n Enter your name here:  \n", 'blue', attrs=['bold']))
+        except BaseException:
+            clear()
+            print(colored(
+                """ \n\n Hmmm....this doesn't seem right \U0001F914 """
+                """ Please make sure to enter a valid name!""", 'cyan'
+            ))
         if validate_name(player_name):
             break
         else:
@@ -203,7 +212,10 @@ def run_game():
                   colored("or", 'blue', attrs=['bold']), 
                   colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
-            input("\n ")
+            try:    
+                input("\n ")
+            except BaseException:
+                pass
             main()
 
         # Display the number of life left, actual word and all guessed letters
@@ -226,7 +238,10 @@ def run_game():
                   colored("or", 'blue', attrs=['bold']), 
                   colored(" Enter", 'white', attrs=['bold']),
                   colored("to return to main menu...\n", 'blue', attrs=['bold']))
-            input("\n ")            
+            try:
+                input("\n ")
+            except BaseException:
+                pass 
             main()
             
         # Ask user to guess the letter
@@ -292,22 +307,21 @@ def main():
         print(colored(" Please enter valid options like 1, 2, 3 "
                       "and 4 \n", 'cyan'))
         # get user input
-        user_choice = (input(colored(" Enter your choice here "
-                       ": \n", 'blue', attrs=['bold'])))
+        try:
+            user_choice = int((input(colored(" Enter your choice here "
+                              ": \n", 'blue', attrs=['bold']))))
+        except BaseException:
+            clear()
+            print(colored("\n Invalid input. Please enter valid options"
+                  "like 1, 2, 3 and 4", 'red'))
+            continue
         # validate the user choice and it should contain only number
         if not user_choice.isdecimal():
             clear()
             print(colored("\n Invalid input. Please enter valid options"
                   "like 1, 2, 3 and 4", 'red'))
             continue
-        else:
-            try:
-                user_choice = int(user_choice)
-            except ValueError():
-                clear()
-                print(colored("\n Invalid input. Please enter valid options"
-                              "like 1, 2, 3 and 4", 'red'))
-                continue
+        
         if user_choice == 1:
             clear()
             print("\n\n")
