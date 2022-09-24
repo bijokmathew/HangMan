@@ -34,9 +34,9 @@ def display_top_5_score():
     total_list_players_from_sheet = scores_sheet.get_all_values()
     # Display players name and their score in table format
     print(colored("\n\n Top five scorers are ...", 'yellow', attrs=['bold']))
-    print(colored("________________________________________________________________", 'white', attrs=['bold']))
+    print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
     print('{:43s} {:20s} '.format(colored("  Name", 'blue', attrs=['bold']), colored("Number of life used", 'blue', attrs=['bold'])))
-    print(colored("________________________________________________________________", 'white', attrs=['bold']))
+    print(colored("________________________________________________________________", 'white', attrs=['bold']), "\n")
     
     for player in total_list_players_from_sheet:
         print('{:47s} {:20s}  '.format(colored("  "+player[0], 'magenta', attrs=['bold']), colored(player[1], 'magenta', attrs=['bold'])))

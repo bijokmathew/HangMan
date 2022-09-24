@@ -134,7 +134,8 @@ HangMan is a single page game that consists of these sections:
  - Landing page with main menu
  - Play Game 
  - Help
- - Exit   
+ - High Scores
+ - Exit Game   
  - Game info contains no of guess left, previously guessed letters and predict word
  - Message
 
@@ -189,6 +190,14 @@ HangMan is a single page game that consists of these sections:
  - After selecting 'Help' from the main menu, it will display the procedure to display the game in detail. 
 
 </details>
+<details><summary>High Scores </summary>
+
+![Hogh Scores](assets/images/readme/)
+
+ - High Scores option display top 5 players name and their used number of life in ascending order
+  
+</details>
+
 <details><summary>Exit Game </summary>
 
 ![Exit](assets/images/readme/)
@@ -218,7 +227,6 @@ HangMan is a single page game that consists of these sections:
 
 - To add different mode for the game like easy, medium and hard.
 - To add an option for sharing last ten high score on social medias.
-- To store player name and their succes based on the number guess they made to predict the word
   
 [Back to top](#hangman-game)
 
@@ -264,7 +272,7 @@ Below are some images for reference with the UX Stories Testing.
 
 3. As a new user, I want to know how to proceed if I enter worng data.
 
-   - In each stage there is proper validation check for user input and based on the validation result appropriate message shows to the user for further action
+   - In each stage there is proper validation check for user input and based on the validation result     appropriate message shows to the user for further action
    - Also used python error handing method like try - except block for catching any run time exception   
 
 4. As a repeat visitor, I want to restart the game at some point.
@@ -275,6 +283,11 @@ Below are some images for reference with the UX Stories Testing.
 5. As a repeat visitor, I want to see actual word in both win and loose case .
 
     - Message section clearly display you won or loose the game and display the actual word in both case
+  
+6. As a repeat visitor, I want to see top players and their used number of life.
+   
+   - Menu option 'High Scores' display the top five players name and their used number of life in 
+     ascending order
    
 [Back to top](#hangman-game)
 
@@ -333,7 +346,7 @@ and then each of the dependencies listed in requirements.txt file, then nodejs i
  Martina Terlevic
   - My mentor at Code Institute and she guided me throught the project.
   - Friends and Teachers at Code Institute: Thank you for all your knowledge and insight.
-  - Walkthrough project ”Love Sandwitch and "Portfolio 3 Project Scope" has provided inspiration and knowledge.
+  - Walkthrough project ”Love Sandwitch" and "Portfolio 3 Project Scope" has provided inspiration and knowledge.
 
 ### Great sources
 
