@@ -12,8 +12,10 @@ The actual words are chosen randomly from many words. The game gives number of g
    3. Guess only single alphabet letter and number of guess is eaual to the length of  the actual word
    4. If guessed letter is not found in the actual word then you loose one number of  guess and display the hangman based on the number of life remaining
    5. If guessed letter is already gussed previously then try to guess another letter and you wont loose the number of guess
-   6. If guessed letter and actual word are same then you won the game
-   7. If number of guess is zeor and guessed letter and actual word are not same then you loose the game    
+   6. If number of guess is zeor and guessed letter and actual word are not same then you loose the game
+   7. If guessed and actual word are same then you won the game
+   8. After won the game, will check the number of life used is best in the sheet then update the sheet
+      with player name and new score in appropriate position.   
 
 ## Business goals of the website 
 This website is developed as part of the third project in diploma in Software Development from The Code Institute and this project mainly focued on the python logic and familier with python language.
