@@ -100,8 +100,8 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
               attrs=['bold']), colored("5", 'white', attrs=['bold']))
     # If the current score is not in top 5 list then show the below message
     elif isPresent is False:
-        print(colored("Your score is not in the first five top list.\
-                        Please try again,'cyan',attrs=['bold']"))
+        print(colored(" Your score is not in the first five top list."
+              "Please try again", 'cyan', attrs=['bold']))
 
 
 def clear():
