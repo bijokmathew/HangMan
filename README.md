@@ -7,7 +7,7 @@ Hangman is an old school favorite, a word game where the goal is simply to find 
 The actual words are chosen randomly from many words. The game gives number of guess equal to the length of the word. 
 
 ## How to play
-   1. Please enter valid options like 1,2,3 to play the game
+   1. Please enter valid options like 1,2,3 and 4 to play the game
    2. Enter valid name i.e name contains only alphabet and minumum 2 letter
    3. Guess only single alphabet letter and number of guess is eaual to the length of  the actual word
    4. If guessed letter is not found in the actual word then you loose one number of  guess and display the hangman based on the number of life remaining
@@ -128,7 +128,7 @@ HangMan is a simple game which has three pages rule.py module exlain how to play
 [Back to top](#hangman-game)
 
 ## Features 
-![Game](assets/images/readme/fullscreen.png)
+
 HangMan is a single page game that consists of these sections:
 
  - Landing page with main menu
@@ -148,7 +148,9 @@ HangMan is a single page game that consists of these sections:
  The user is firstly presented with a menu page, showing the options for the game. 
   1 -> Play Game
   2 -> Help
-  3 -> Exit Game
+  3 -> High Scores
+  4 -> Exit Game
+  
 </details>
 <details><summary>Play Game </summary>
 

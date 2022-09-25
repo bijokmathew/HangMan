@@ -6,7 +6,7 @@ def get_game_help():
     * Define the how to play the game
     * Explain details of the game like invalid entry, error cases
     """
-    print(colored("-" * 120, 'blue'))
+    print(colored("-" * 80, 'blue'))
     print('\n')
     print(colored(" " * 30 + "How to play the GAME", 'yellow'))
     rule_list = (
@@ -50,7 +50,7 @@ def get_game_help():
 
     print(colored(rule_list, 'cyan'))
 
-    print("\n\n", colored("-" * 120, 'blue'))
+    print("\n\n", colored("-" * 80, 'blue'))
     print('\n')
 
     print(" " * 24 + colored("\n Please enter", 'blue', attrs=['bold']),

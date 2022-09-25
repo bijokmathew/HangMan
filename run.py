@@ -162,6 +162,7 @@ def run_game():
         try:
             player_name = input(colored("\n\n Enter your name here:  \n",
                                 'blue', attrs=['bold']))
+            clear()
         except BaseException:
             clear()
             print(colored(
