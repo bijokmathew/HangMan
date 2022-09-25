@@ -17,6 +17,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
 ]
 
+# For accessing the google sheet
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
@@ -24,7 +25,7 @@ SHEET = GSPREAD_CLIENT.open("hangman-game-score")
 scores_sheet = SHEET.worksheet("higher-score")
 
 
-def display_top_5_score():
+def display_top_five_score():
     """
     * This function get all datas ie 5 list from the
       score sheet
@@ -57,7 +58,7 @@ def display_top_5_score():
     main()
 
 
-def update_current_score_in_toplist(number_of_life_used, player_name):
+def update_current_score_in_google_sheet(number_of_life_used, player_name):
     """
     * This function checks current value of number_of_life_used is
       smaller than in top 5 list of score sheet
@@ -73,6 +74,8 @@ def update_current_score_in_toplist(number_of_life_used, player_name):
     curent_no_of_entry_scoresheet = len(total_list_players_from_sheet)
     index = 0
     for index in range(curent_no_of_entry_scoresheet):
+        # this variable to check the current score is already updated in sheet
+        # this is useful in the case if sheet not contain 5 entries
         isPresent = False
         # if the current score is less than in the list,then update the current
         # score in the sheet
@@ -208,7 +211,8 @@ def run_game():
                   'white', attrs=['bold']),
                   colored("lifes", 'green', attrs=['bold']))
             # add the current score in to the sheet
-            update_current_score_in_toplist(number_of_life_used, player_name)
+            update_current_score_in_google_sheet(number_of_life_used,
+                                                 player_name)
             # Ask user to continue or exit the game
             print(" " * 24 + colored("\n Please enter", 'blue',
                   attrs=['bold']), colored("any letter", 'white',
@@ -329,7 +333,7 @@ def main():
         if user_choice == 1:
             clear()
             print("\n\n")
-            print(colored("Your game started .... \n", 'green'))
+            print(colored(" Your game started .... \n", 'green'))
             # start the game
             run_game()
             break
@@ -342,11 +346,11 @@ def main():
         elif user_choice == 3:
             clear()
             # display top 5 scores from the google sheet
-            display_top_5_score()
+            display_top_five_score()
             break
         elif user_choice == 4:
             clear()
-            print(colored("Your leaving the game. See you soon"
+            print(colored("\n Your leaving the game. See you soon"
                           "...\n", 'white', attrs=['bold']))
             # Exit the game
             exit()
