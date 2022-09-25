@@ -320,6 +320,10 @@ During the development stage, found many minor and major issues.Few of issu fixe
 
   - Code has been tested and corrected via the PEP8 Online Validator http://pep8online.com/.
 
+ ![Game info section](assets/images/readme/run_validator_testing.png)
+ ![Game info section](assets/images/readme/help_validator_testing.png)
+ ![Game info section](assets/images/readme/hangman_validator_testing.png)
+
 [Back to top](#hangman-game)
 
 ## Development and Deployment
