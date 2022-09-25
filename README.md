@@ -223,12 +223,14 @@ of the sheet then the player name and their score updated in the sheet and displ
 </details>
 <details><summary> Info section </summary>
 
-![Rules](assets/images/readme/game_error.png)
+![all error](assets/images/readme/game_all_error.png)
+![all error](assets/images/readme/game_all_info.png)
  
  - This section display the message to the user to proceed the game
  - Game handled all error case like validating the user input for menu selection, input for guess the letter, and input for the name.
  - All the above cases user will get the proper message and action plan
- - In addition to the above validation handled try-- except block as well  
+ - In addition to the above validation handled try-- except block as well 
+   
 </details>
 
 ### Future Features
@@ -256,17 +258,19 @@ of the sheet then the player name and their score updated in the sheet and displ
 - [Google Auth](https://google-auth.readthedocs.io/en/master/)
 - [Random](https://docs.python.org/3/library/random.html)
 - [String](https://docs.python.org/3/library/string.html)
+  
+[Back to top](#hangman-game)
 
-  ## UX Stories Testing 
+## UX Stories Testing 
 
 Below are some images for reference with the UX Stories Testing.
 
-![alt text](assets/images/readme/)
-![alt text](assets/images/readme/)
-![alt text](assets/images/readme/)
-![alt text](assets/images/readme/game_error.png)
-![alt text](assets/images/readme/)
-![alt text](assets/images/readme/)
+![alt text](assets/images/readme/help.png)
+![alt text](assets/images/readme/game_info.png)
+![alt text](assets/images/readme/game_all_error.png)
+![alt text](assets/images/readme/game_all_info.png)
+![alt text](assets/images/readme/high_scores.png)
+![alt text](assets/images/readme/google_sheet.png)
 
 1. As a new user, I want to know how to play the game.
 
