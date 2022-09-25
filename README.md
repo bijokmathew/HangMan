@@ -143,58 +143,64 @@ HangMan is a single page game that consists of these sections:
 
 <details><summary> Landing page </summary>
 
-![Landing page](assets/images/readme/)
+![Landing page](assets/images/readme/landing_page.png)
 
  The user is firstly presented with a menu page, showing the options for the game. 
-  1 -> Play Game
-  2 -> Help
-  3 -> High Scores
-  4 -> Exit Game
+  - 1 -> Play Game
+  - 2 -> Help
+  - 3 -> High Scores
+  - 4 -> Exit Game
   
 </details>
 <details><summary>Play Game </summary>
 
-![Play Game](assets/images/readme/)
+![Play Game](assets/images/readme/enter_name.png)
+
  When you select option 1 in the main menu, the game will start. First, the user will get a request for a name, which will be added to the Winner's board if they win at the end of the game.
  validate the name based on the below rule
  - Name should contain only alphabets
  - Name should contain atleast 2 letters 
 
-![screenshot](assets/images/readme)
+![screenshot](assets/images/readme/guess_letter.png)
 
 - Current word selected and displayed as "-------".
-- Display number of guess left
+- Display number of life left
 - Display previously guessed letters  
 
-![screenshot](assets/images/readme)
+![screenshot](assets/images/readme/wrong_guess.png)
 
-- For each wrong guess and a part of hangman displayed based on the number of guess left.
+- For each wrong guess and a part of hangman displayed based on the number of life left.
 
-![screenshot](assets/images/readme)
-![screenshot](assets/images/readme)
+![screenshot](assets/images/readme/letter_found.png)
 
 - Every correct guess is displayed, add the letter to prevously guessed letters and place the letter in correct position in the current word.
 
-![screenshot](assets/images/readme)
+![screenshot](assets/images/readme/game_won.png)
 
-- Once the number of guess become zeor or user predicts the word correctly then the game finished and will display whether they've won or lost, either way the user can see the whole word displayed.
+- Once the number of guess become zeor or user predicts the word correctly then the game finished and will display whether they've won or lost, either way the user can see the whole word.If the number of life used is in top five 
+of the sheet then the player name and their score updated in the sheet and display the proper message  
 
-![screenshot](assets/images/readme)
-![screenshot](assets/images/readme)
+![screenshot](assets/images/readme/game_won_not_saved.png)
+
+-  After won the game, if number of life used is not in the top five of the sheet, it wont save to the sheet and show the proper message.
+  
+![screenshot](assets/images/readme/google_sheet.png)
+
+- Top five player name and their number of life used to guess the word updated in the sheet
 
 
 </details>
 
 <details><summary>Help Option </summary>
 
-![Help](assets/images/readme/)
+![Help](assets/images/readme/help.png)
 
  - After selecting 'Help' from the main menu, it will display the procedure to display the game in detail. 
 
 </details>
 <details><summary>High Scores </summary>
 
-![Hogh Scores](assets/images/readme/)
+![Hogh Scores](assets/images/readme/high_scores.png)
 
  - High Scores option display top 5 players name and their used number of life in ascending order
   
@@ -202,14 +208,14 @@ HangMan is a single page game that consists of these sections:
 
 <details><summary>Exit Game </summary>
 
-![Exit](assets/images/readme/)
+![Exit](assets/images/readme/exit_game.png)
 
  - If user want to exit the game, he can use this option from the main menu. This will take the user out of the game application and inform the user he left the game app
   
 </details>
 <details><summary> Game info section </summary>
 
-![Game info section](assets/images/readme/)
+![Game info section](assets/images/readme/game_info.png)
 
  - The game info section is on the first page and it always visible to the user after starting the game.
  - This area contains number of guess left, previously guessed letters and incomplete word 
@@ -217,7 +223,7 @@ HangMan is a single page game that consists of these sections:
 </details>
 <details><summary> Info section </summary>
 
-![Rules](assets/images/readme/)
+![Rules](assets/images/readme/game_error.png)
  
  - This section display the message to the user to proceed the game
  - Game handled all error case like validating the user input for menu selection, input for guess the letter, and input for the name.
@@ -258,7 +264,7 @@ Below are some images for reference with the UX Stories Testing.
 ![alt text](assets/images/readme/)
 ![alt text](assets/images/readme/)
 ![alt text](assets/images/readme/)
-![alt text](assets/images/readme/)
+![alt text](assets/images/readme/game_error.png)
 ![alt text](assets/images/readme/)
 ![alt text](assets/images/readme/)
 

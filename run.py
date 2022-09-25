@@ -265,7 +265,7 @@ def run_game():
         # check whether the guess letter is previosly gusses
         if user_guess_letter in user_guessed_letters:
             clear()
-            print(colored("\n You already guessed the letter:", 'cyan'),
+            print(colored("\n You already guessed the letter:", 'red'),
                   user_guess_letter)
             print(colored("\n Please guess another letter", 'cyan'))
             continue
