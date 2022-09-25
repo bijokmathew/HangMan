@@ -167,7 +167,7 @@ def run_game():
             clear()
             print(colored(
                 """ \n\n Hmmm....this doesn't seem right \U0001F914 """
-                """ Please make sure to enter a valid name!""", 'cyan'
+                """ Please make sure to enter a valid name!""", 'red'
             ))
             continue
         if validate_name(player_name):
@@ -176,7 +176,7 @@ def run_game():
             clear()
             print(colored(
                 """ \n\n Hmmm....this doesn't seem right \U0001F914 """
-                """ Please make sure to enter a valid name!""", 'cyan'
+                """ Please make sure to enter a valid name!""", 'red'
             ))
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
