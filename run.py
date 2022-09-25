@@ -180,7 +180,6 @@ def run_game():
             ))
     # get randomly actual word from list of words
     actual_word = random.choice(list_of_words)
-    print(actual_word)
     # define the number of life and assign to the length of the actual word
     number_of_life = len(actual_word)
     # store all the user gussed letters to check user repeat the same letter
